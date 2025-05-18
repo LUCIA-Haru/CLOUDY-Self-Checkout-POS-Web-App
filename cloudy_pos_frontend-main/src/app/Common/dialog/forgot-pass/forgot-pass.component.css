@@ -1,0 +1,19 @@
+.forgot-password-container {
+  padding: 3rem;
+  width: 100%;
+}
+
+mat-form-field {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+mat-spinner {
+  display: inline-block;
+  vertical-align: middle;
+}

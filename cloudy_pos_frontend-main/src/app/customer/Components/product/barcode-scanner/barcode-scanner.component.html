@@ -1,0 +1,39 @@
+<div class="scanner-container">
+  <h2 class="title title-top">Barcode Scanner</h2>
+
+  <!-- Manual Barcode Input -->
+  <div class="manual-input">
+    <input
+      type="text"
+      [(ngModel)]="manualBarcode"
+      placeholder="Enter barcode manually"
+      (keyup.enter)="searchManualBarcode()"
+    />
+    <button
+      class="manual_btn"
+      (click)="searchManualBarcode()"
+      [disabled]="!manualBarcode"
+    >
+      Search Barcode
+    </button>
+  </div>
+
+  <!-- Video Feed -->
+  <div id="video-container" class="video-container"></div>
+
+  <!-- Capture Snapshot Button -->
+  <button class="search_btn" (click)="captureSnapshot()">Capture & Scan</button>
+
+  <!-- Display Scanned Barcode -->
+  <div *ngIf="scannedBarcode" class="result">
+    <h3>Scanned Barcode:</h3>
+    <p>{{ scannedBarcode }}</p>
+  </div>
+  <button
+    class="next_btn"
+    (click)="searchProduct(scannedBarcode)"
+    [disabled]="!scannedBarcode"
+  >
+    Next
+  </button>
+</div>

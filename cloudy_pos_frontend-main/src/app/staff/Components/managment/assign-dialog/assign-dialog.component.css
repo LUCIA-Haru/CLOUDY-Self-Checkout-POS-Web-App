@@ -1,0 +1,19 @@
+.assign-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-dialog-actions {
+  justify-content: flex-end;
+  padding: 16px;
+}
+
+.cancel {
+  margin-right: 8px;
+}

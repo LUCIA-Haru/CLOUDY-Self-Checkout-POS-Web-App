@@ -1,0 +1,60 @@
+.card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  background: var(--beige-blue);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.chart-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.chart-card canvas {
+  max-height: 300px;
+}
+
+.table-card .table {
+  margin-bottom: 0;
+}
+
+.table-row {
+  transition: background-color 0.3s ease;
+}
+
+.table-row:hover {
+  background-color: #e9ecef;
+}
+
+.hero-title {
+  font-family: "Arial", sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.container-fluid {
+  padding: 2rem;
+}
+.btn-prev {
+  width: 250px;
+  font-size: larger;
+  background: var(--second-gray);
+  color: var(--dark);
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.btn-prev:hover {
+  scale: 1;
+  background: var(--third-gray);
+  border: none;
+  color: var(--light);
+}

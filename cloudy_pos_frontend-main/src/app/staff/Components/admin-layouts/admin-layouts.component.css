@@ -1,0 +1,14 @@
+.layout-container {
+  display: flex;
+  background: var(--light);
+  min-height: 100vh;
+}
+
+.content-area {
+  width: calc(100% - 220px); /* Adjusted for sidebar width */
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enable vertical scrolling */
+  margin-left: 220px; /* Offset for the fixed sidebar */
+}

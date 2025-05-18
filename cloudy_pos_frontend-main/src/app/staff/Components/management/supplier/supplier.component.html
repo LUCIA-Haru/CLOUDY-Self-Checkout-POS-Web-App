@@ -1,0 +1,13 @@
+<app-table
+  [columns]="columns"
+  [data]="allSuppliers"
+  [filterConfig]="filterConfig"
+  [editable]="true"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [entityName]="'Supplier'"
+  (onRowAdd)="addSupplier($event)"
+  (onRowEdit)="updateSupplier($event)"
+  (onRowRemove)="removeSupplier($event)"
+  (pageChange)="onPageChange($event)"
+></app-table>

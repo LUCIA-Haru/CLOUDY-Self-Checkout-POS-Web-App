@@ -1,0 +1,82 @@
+<mat-dialog-content>
+  <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="loginForm">
+    <mat-card>
+      <mat-card-header>
+        <h2>{{ title }}</h2>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="Enter username"
+            required
+          />
+          <mat-error *ngIf="username?.invalid && username?.touched">
+            <span *ngIf="username?.errors?.['required']"
+              >Username is required</span
+            >
+            <span *ngIf="username?.errors?.['pattern']">
+              Username must start with an uppercase letter and be at least 3
+              characters long.
+            </span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            required
+            placeholder="Enter your password"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="password?.invalid && password?.touched">
+            <span *ngIf="password?.errors?.['required']"
+              >Password is required</span
+            >
+            <span *ngIf="password?.errors?.['pattern']">
+              Password must contain at least one letter, one number, and one
+              special character.
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions class="d-flex align-self-center action-buttons">
+        <button mat-raised-button class="login-button me-3" type="submit">
+          Login
+        </button>
+        <button mat-button class="reset-button" type="reset">Reset</button>
+      </mat-card-actions>
+      <div class="container m-2 align-items-center">
+        <div class="row d-flex justify-content-between">
+          <div class="col-6 d-flex justify-content-start align-items-end">
+            <a class="forgotpw" (click)="openForgotModel()">Forgot Password?</a>
+          </div>
+
+          <div class="col-6 d-flex justify-content-end align-self-center">
+            <a
+              title="register"
+              class="m-1 register"
+              (click)="openRegisterModal()"
+            >
+              Don't have an account yet?
+            </a>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</mat-dialog-content>

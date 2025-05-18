@@ -1,0 +1,30 @@
+<div class="otp-verification-container p-2 w-full">
+  <mat-card>
+    <mat-card-title>OTP Verification</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="otpForm" (ngSubmit)="onVerifyOtp()">
+        <p>An OTP has been sent to your email: {{ data.email }}</p>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter OTP</mat-label>
+          <input matInput formControlName="otp" placeholder="****" />
+          <mat-error *ngIf="otp?.hasError('required')"
+            >OTP is required</mat-error
+          >
+          <mat-error *ngIf="otp?.hasError('pattern')"
+            >OTP must be 4 digits</mat-error
+          >
+        </mat-form-field>
+        <div class="button-container">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="otpForm.invalid"
+          >
+            Verify OTP
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

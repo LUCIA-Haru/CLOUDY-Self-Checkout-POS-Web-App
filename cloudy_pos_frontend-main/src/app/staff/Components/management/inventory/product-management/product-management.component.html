@@ -1,0 +1,20 @@
+<div class="product-management">
+  <app-table
+    [columns]="columns"
+    [data]="products"
+    [filterConfig]="filterConfig"
+    [editable]="editable"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    [totalElementsInput]="totalElements"
+    [totalPagesInput]="totalPages"
+    [excludedFields]="excludedFields"
+    entityName="Product"
+    (onRowAdd)="handleRowAdd($event)"
+    (onRowEdit)="handleRowEdit($event)"
+    (onRowRemove)="handleRowRemove($event)"
+    (pageChange)="handlePageChange($event)"
+    (filterChange)="handleFilterChange($event)"
+    (onImageManage)="openImageUploadDialog($event)"
+  ></app-table>
+</div>

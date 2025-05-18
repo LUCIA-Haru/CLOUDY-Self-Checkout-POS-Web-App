@@ -1,0 +1,53 @@
+<div class="container-fluid min-vh-100 bg-light py-4">
+  <!-- Header -->
+  <header class="mb-4 d-flex justify-content-between align-items-center">
+    <h1 class="display-4 fw-bold text-dark hero-title">
+      Recent Purchases (Page 2) & Expiry Alerts
+    </h1>
+    <button class="btn btn-success" (click)="previousPage()">Previous</button>
+  </header>
+
+  <!-- Recent Purchases Table -->
+  <div
+    class="card shadow-sm mb-4 table-card frosted-card"
+    data-animation="scrollFadeIn"
+  >
+    <div class="card-body">
+      <h2 class="card-title h5 fw-semibold text-secondary mb-3">
+        Recent Purchases (Continued)
+      </h2>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Purchase ID</th>
+              <th scope="col">Date</th>
+              <th scope="col">Total Amount ($)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let purchase of recentPurchases"
+              class="table-row"
+              data-animation="staggerScrollAppear"
+            >
+              <td>{{ purchase.purchaseId }}</td>
+              <td>{{ purchase.date }}</td>
+              <td>{{ purchase.totalAmount | number: "1.2-2" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expiry Alerts Placeholder -->
+  <div class="card shadow-sm frosted-card" data-animation="scrollFadeIn">
+    <div class="card-body">
+      <h2 class="card-title h5 fw-semibold text-secondary mb-3">
+        Expiry Alerts
+      </h2>
+      <p class="text-muted">No expiry alerts available at this time.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+.carousel-container {
+  position: relative;
+  /* width: 100%; */
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+  width: max-content;
+  padding: 20px 0;
+  align-items: flex-start;
+  position: relative;
+  will-change: transform;
+  overflow: hidden;
+}
+
+.carousel-item {
+  flex: 0 0 calc((100% - 40px) / 3); /* 3 items, accounting for 20px gap */
+  max-width: 450px;
+  min-width: 250px;
+  margin: 0; /* Remove margin to avoid extra spacing */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  touch-action: manipulation;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.prev-btn:disabled,
+.next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.prev-btn:hover:not(:disabled),
+.next-btn:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Tablet: 2 items */
+@media (max-width: 1024px) {
+  .carousel-container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .carousel {
+    gap: 15px;
+  }
+
+  .carousel-item {
+    flex: 0 0 calc((100% - 15px) / 2); /* 2 items */
+    max-width: 48%;
+  }
+}
+
+/* Mobile: 1 item */
+@media (max-width: 768px) {
+  .carousel-container {
+    padding: 0 10px;
+  }
+
+  .carousel {
+    gap: 10px;
+  }
+
+  .carousel-item {
+    flex: 0 0 calc(100% - 20px); /* 1 item */
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .prev-btn,
+  .next-btn {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+}

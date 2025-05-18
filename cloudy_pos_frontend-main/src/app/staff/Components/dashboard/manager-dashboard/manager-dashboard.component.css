@@ -1,0 +1,97 @@
+.card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  background: var(--beige-blue);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.chart-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.chart-card canvas {
+  max-height: 300px;
+}
+
+.hero-title {
+  font-family: var(--title-font);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.container-fluid {
+  padding: 2rem;
+}
+
+.overview-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.overview-cards .col {
+  flex: 1 1 200px;
+  max-width: 25%;
+  position: relative;
+}
+
+.cdk-drag-preview {
+  border: 2px dashed #007bff;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+  z-index: 1000;
+  opacity: 0.9;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+  background-color: var(--light);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.settings-panel {
+  max-width: 400px;
+  margin-right: auto;
+}
+
+.settings-btn {
+  background: var(--sky);
+  border: none;
+  width: 250px;
+  font-size: larger;
+  color: var(--dark);
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.settings-btn:hover {
+  background-color: var(--sky-hover);
+}
+.btn-next {
+  width: 250px;
+  font-size: larger;
+  background: var(--second-gray);
+  color: var(--dark);
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.btn-next:hover {
+  scale: 1;
+  background: var(--third-gray);
+  border: none;
+  color: var(--light);
+}

@@ -1,0 +1,68 @@
+<div class="paypal-return-container">
+  <h2>Review Your Purchase</h2>
+
+  <!-- Voucher Display -->
+  <div class="voucher-section" *ngIf="checkoutData">
+    <h3>Purchase Details</h3>
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of checkoutData.cartItems">
+        <div class="item-details">
+          <img
+            [src]="item.img || 'https://via.placeholder.com/60'"
+            [alt]="item.name"
+            class="item-image"
+          />
+
+          <span class="item-name fw-bolder">{{ item.name }}</span>
+          <br />
+          <span class="item-subtext fw-light">Barcode: {{ item.barcode }}</span>
+        </div>
+        <!-- <div class="item-price">{{ item.price | currency: "USD" }}</div>
+        <div class="item-discount">
+          {{ item.discountedPrice | currency: "USD" }}
+        </div> -->
+        <div class="item-quantity">{{ item.quantity }}</div>
+        <div class="item-total">
+          {{ item.discountedPrice * item.quantity | currency: "USD" }}
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-section">
+      <div class="summary-row">
+        <span>Original Total:</span>
+        <span>{{ checkoutData.originalAmount | currency: "USD" }}</span>
+      </div>
+      <div class="summary-row" *ngIf="checkoutData.couponDiscount">
+        <span>Coupon Discount:</span>
+        <span>-{{ checkoutData.couponDiscount | currency: "USD" }}</span>
+      </div>
+      <div class="summary-row" *ngIf="checkoutData.loyaltyDiscount">
+        <span>Loyalty Discount:</span>
+        <span>-{{ checkoutData.loyaltyDiscount | currency: "USD" }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Subtotal:</span>
+        <span>{{ checkoutData.totalAmount | currency: "USD" }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Tax:</span>
+        <span>{{ checkoutData.taxAmount | currency: "USD" }}</span>
+      </div>
+      <div class="summary-row grand-total">
+        <span>Final Amount:</span>
+        <span>{{ checkoutData.finalAmount | currency: "USD" }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button mat-raised-button class="cancel" (click)="cancelPayment()">
+      Cancel Transaction
+    </button>
+    <button mat-raised-button class="execute" (click)="executePayment()">
+      Execute Payment
+    </button>
+  </div>
+</div>

@@ -1,0 +1,236 @@
+.footer-container {
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(179, 165, 84, 0.26);
+  box-sizing: border-box;
+}
+
+.footer_info {
+  padding: clamp(1rem, 3vw, 1.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo_container {
+  font-family: var(--title-font);
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-weight: bold;
+}
+
+.about_f_container,
+.contact_f_container {
+  flex: 1;
+  min-width: 200px;
+}
+
+.about_f_container h4,
+.contact_f_container h4 {
+  font-family: var(--title-font);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  margin-bottom: 0.75rem;
+}
+
+.about_f_container .f_menu,
+.contact_f_container .c_menu {
+  line-height: 1.8rem;
+  font-size: clamp(0.75rem, 2.5vw, 0.8rem);
+  list-style: none;
+  padding: 0;
+}
+
+.contact_f_container .c_menu b {
+  font-family: var(--title-font);
+}
+
+.about_f_container .f_menu a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+
+.about_f_container .f_menu a::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  height: 2px;
+  border-radius: 5px;
+  bottom: -2px;
+  left: 0;
+  transform-origin: left;
+  transition: transform 0.5s ease;
+  transform: scaleX(0);
+  background-color: var(--sky);
+  box-shadow: 0 0 5px var(--title-color);
+}
+
+.about_f_container .f_menu a:hover::after {
+  transform: scaleX(1);
+}
+
+.social_container {
+  padding: 1rem 0;
+}
+
+.social_container i {
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  color: var(--dark);
+  transition: color 0.3s ease;
+}
+
+.social_container i:hover {
+  color: var(--sky);
+}
+
+.copyright_container {
+  font-family: var(--title-font);
+  font-size: clamp(0.65rem, 2vw, 0.7rem);
+  padding: 0.75rem clamp(1rem, 3vw, 1.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.privacy_container a {
+  color: inherit;
+  text-decoration: none;
+  font-size: clamp(0.65rem, 2vw, 0.7rem);
+  transition: color 0.3s ease;
+}
+
+.privacy_container a:hover {
+  color: var(--sky);
+}
+
+.shutdown {
+  position: sticky;
+  bottom: 0;
+  font-size: clamp(0.65rem, 2vw, 0.75rem);
+  background: var(--title-color);
+  padding: 0.5rem;
+  text-align: center;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablet devices (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .footer_info {
+    padding: 1rem;
+  }
+
+  .logo_container {
+    flex: 0 0 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .about_f_container,
+  .contact_f_container {
+    flex: 1;
+    min-width: 45%;
+  }
+
+  .social_container {
+    padding: 0.75rem 0;
+  }
+
+  .copyright_container {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .footer_info {
+    padding: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo_container {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .about_f_container,
+  .contact_f_container {
+    min-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .about_f_container h4,
+  .contact_f_container h4 {
+    font-size: 0.9rem;
+  }
+
+  .about_f_container .f_menu,
+  .contact_f_container .c_menu {
+    font-size: 0.8rem;
+  }
+
+  .social_container {
+    padding: 0.5rem 0;
+  }
+
+  .social_container i {
+    margin: 0 0.75rem;
+  }
+
+  .copyright_container {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .privacy_container {
+    justify-content: center !important;
+    margin-top: 0.5rem;
+  }
+
+  .privacy_container a {
+    margin: 0 1rem;
+  }
+}
+
+/* Very small devices (up to 480px) */
+@media (max-width: 480px) {
+  .footer_info {
+    padding: 0.5rem;
+  }
+
+  .logo_container {
+    font-size: 1.2rem;
+  }
+
+  .about_f_container h4,
+  .contact_f_container h4 {
+    font-size: 0.85rem;
+  }
+
+  .about_f_container .f_menu,
+  .contact_f_container .c_menu {
+    font-size: 0.75rem;
+    line-height: 1.6rem;
+  }
+
+  .social_container i {
+    font-size: 0.9rem;
+    margin: 0 0.5rem;
+  }
+
+  .copyright_container {
+    font-size: 0.65rem;
+  }
+
+  .privacy_container a {
+    font-size: 0.65rem;
+    margin: 0 0.75rem;
+  }
+
+  .shutdown {
+    font-size: 0.65rem;
+    padding: 0.3rem;
+  }
+}

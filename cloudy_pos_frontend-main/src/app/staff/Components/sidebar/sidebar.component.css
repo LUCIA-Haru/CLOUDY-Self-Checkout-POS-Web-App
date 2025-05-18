@@ -1,0 +1,128 @@
+.sidebar-wrapper {
+  width: 220px; /* Match the width in your layout */
+  height: 100vh; /* Fix the height to the viewport */
+  position: fixed; /* Make the sidebar sticky */
+  top: 0; /* Stick to the top of the viewport */
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-right: none;
+  overflow: hidden;
+}
+
+.nav-tabs {
+  position: relative;
+  height: 100%; /* Ensure the nav-tabs take the full height of the sidebar */
+  display: flex;
+  flex-direction: column;
+  --tab-count: 6; /* Default value, overridden by the component */
+}
+
+/* Rest of your existing CSS remains unchanged */
+.tab-label mat-icon {
+  margin-right: 8px;
+}
+
+.tab-label {
+  margin: 20px 0 10px 0;
+  flex: 1;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: left;
+  color: #000000;
+  opacity: 0.5;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition:
+    opacity 0.4s ease-in-out,
+    color 0.4s ease-in-out;
+  z-index: 2;
+  position: relative;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.marker {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  display: flex;
+  flex-direction: column;
+  top: calc(-100%);
+  left: 0;
+  transition: transform 0.2s ease-in-out;
+  transform: translateY(
+    calc(calc(50% / var(--tab-count)) * var(--active-index))
+  );
+  z-index: 1;
+}
+
+.tab-label.active {
+  opacity: 1;
+  color: var(--gray-900);
+}
+
+.marker #top,
+.marker #bottom {
+  background-color: #dfe6ed;
+}
+
+.marker #top {
+  height: calc(50%);
+  margin-bottom: auto;
+  border-radius: 0 0 32px 0;
+}
+
+.marker #bottom {
+  height: calc(50% - 72px);
+  border-radius: 0 32px 0 0;
+}
+
+.tab-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: justify-content 0.3s ease;
+}
+
+.center-tabs {
+  justify-content: center;
+}
+
+.expand-icon {
+  transition: transform 0.3s ease;
+}
+
+.expand-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.children-container {
+  margin-left: 20px;
+  padding-top: 5px;
+}
+
+.child-tab {
+  cursor: pointer;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+  height: 32px;
+}
+
+.child-tab:hover {
+  background-color: #d3d9de;
+}
+
+.child-tab.active {
+  background-color: #d3d9de;
+}
+
+.child-tab mat-icon {
+  margin-right: 8px;
+}

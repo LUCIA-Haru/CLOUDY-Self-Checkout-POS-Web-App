@@ -1,0 +1,13 @@
+<div class="card" (click)="clicked.emit()">
+  <div class="image-container">
+    <img [src]="image" [alt]="title" loading="lazy" />
+    <span *ngIf="discount" class="discount-badge">
+      {{ discount }}{{ isPercentage ? "%" : "" }} OFF
+    </span>
+  </div>
+  <div class="card-body">
+    <h3>{{ title }}</h3>
+    <!-- <p class="description">{{ description }}</p> -->
+    <p class="price">{{ currency }}{{ price }}</p>
+  </div>
+</div>

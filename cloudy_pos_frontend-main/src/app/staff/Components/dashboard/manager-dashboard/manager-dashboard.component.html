@@ -1,0 +1,155 @@
+<div class="container-fluid min-vh-100">
+  <!-- Header -->
+  <header class="mb-4 d-flex justify-content-between align-items-center">
+    <h1 class="display-4 fw-bold text-dark hero-title">Manager Dashboard</h1>
+    <br />
+  </header>
+  <div
+    class="action-buttons-container d-flex justify-content-between align-items-center mb-5"
+  >
+    <button
+      class="btn btn-primary settings-btn me-2"
+      (click)="toggleSettingsPanel()"
+    >
+      Customize
+    </button>
+    <button class="btn btn-next" (click)="nextpage()">Next</button>
+  </div>
+  <!-- Settings Panel -->
+  <div
+    class="card shadow-sm mb-4 settings-panel"
+    *ngIf="showSettingsPanel"
+    data-animation="scrollSlideInFromRight"
+  >
+    <div class="card-body">
+      <h2 class="card-title h5 fw-semibold text-secondary mb-3">
+        Dashboard Settings
+      </h2>
+      <div class="mb-3">
+        <h3 class="h6">Toggle Cards</h3>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="cardVisibility.revenue"
+            (change)="savePreferences()"
+            id="revenueToggle"
+          />
+          <label class="form-check-label" for="revenueToggle"
+            >Total Revenue</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="cardVisibility.customers"
+            (change)="savePreferences()"
+            id="customersToggle"
+          />
+          <label class="form-check-label" for="customersToggle"
+            >Total Customers</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="cardVisibility.products"
+            (change)="savePreferences()"
+            id="productsToggle"
+          />
+          <label class="form-check-label" for="productsToggle"
+            >Total Products</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="cardVisibility.staff"
+            (change)="savePreferences()"
+            id="staffToggle"
+          />
+          <label class="form-check-label" for="staffToggle">Total Staff</label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="cardVisibility.charts"
+            (change)="savePreferences()"
+            id="chartsToggle"
+          />
+          <label class="form-check-label" for="chartsToggle">Charts</label>
+        </div>
+      </div>
+      <button class="btn btn-warning" (click)="resetPreferences()">
+        Reset to Default
+      </button>
+    </div>
+  </div>
+
+  <!-- Overview Cards (Draggable) -->
+  <div
+    class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-4 overview-cards"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="dropCard($event)"
+  >
+    <div
+      *ngFor="let card of visibleCards"
+      class="col"
+      cdkDrag
+      [cdkDragDisabled]="!card.visible"
+      data-animation="scrollZoomIn"
+    >
+      <div class="card h-100 shadow-sm card" *ngIf="card.visible">
+        <div class="card-body">
+          <h2 class="card-title h5 fw-semibold text-secondary">
+            {{ card.title }}
+          </h2>
+          <p class="card-text fs-3 fw-bold" [ngClass]="card.class">
+            {{ card.value }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div
+    *ngIf="cardVisibility.charts"
+    class="row row-cols-1 row-cols-lg-2 g-4 mb-4"
+    data-animation="scrollFadeIn"
+  >
+    <!-- Revenue by Category -->
+    <div class="col">
+      <div
+        class="card shadow-sm chart-card"
+        data-animation="scrollSlideInFromLeft"
+      >
+        <div class="card-body">
+          <h2 class="card-title h5 fw-semibold text-secondary mb-3">
+            Revenue by Category
+          </h2>
+          <canvas id="revenueByCategoryChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- Top Products -->
+    <div class="col">
+      <div
+        class="card shadow-sm chart-card"
+        data-animation="scrollSlideInFromRight"
+      >
+        <div class="card-body">
+          <h2 class="card-title h5 fw-semibold text-secondary mb-3">
+            Top Products by Revenue
+          </h2>
+          <canvas id="topProductsChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

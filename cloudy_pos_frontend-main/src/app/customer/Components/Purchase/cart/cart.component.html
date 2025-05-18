@@ -1,0 +1,201 @@
+<span class="position"></span>
+<div class="cart_container_fluid">
+  <!-- Header with Branding -->
+  <header class="header">
+    <div class="brand-logo">Your Cart</div>
+    <div class="cart-icon">
+      <mat-icon>shopping_cart</mat-icon>
+      <span class="cart-count">{{ totalCounts }}</span>
+    </div>
+  </header>
+  <!-- Conditionally Show Empty Cart or Stepper -->
+  <div *ngIf="isCartEmpty; else cartContent" class="empty-cart-container">
+    <p class="empty-cart-message">Your current cart is empty</p>
+    <button mat-raised-button (click)="scan()" class="add-items-btn">
+      <mat-icon>add</mat-icon> Add Items to Cart
+    </button>
+  </div>
+
+  <!-- Stepper -->
+  <ng-template #cartContent>
+    <div class="stepper-container">
+      <mat-stepper [linear]="isLinear" #stepper>
+        <mat-step
+          [stepControl]="cartFormGroup"
+          [completed]="true"
+          [editable]="true"
+        >
+          <ng-template matStepLabel>Your Cart</ng-template>
+          <form [formGroup]="cartFormGroup">
+            <!-- Cart Items -->
+            <div class="cart-items" #cartItemsContainer>
+              <div class="cart-header">
+                <span>Product</span>
+                <span>Price</span>
+                <span>Discount</span>
+                <span>Quantity</span>
+                <span>Total</span>
+                <span></span>
+              </div>
+
+              <div
+                class="cart-item"
+                *ngFor="let item of dataSource.data"
+                #cartItem
+              >
+                <div class="item-details">
+                  <img
+                    [src]="item.prodImgURL || 'assets/placeholder.png'"
+                    alt="{{ item.productName }}"
+                    class="item-image"
+                  />
+                  <div class="item-info">
+                    <span class="item-name">{{ item.productName }}</span>
+                    <span class="item-subtext" (click)="search(item.barcode)"
+                      >Details</span
+                    >
+                  </div>
+                </div>
+                <div class="item-price">
+                  <span
+                    [class.strikethrough]="item.hasDiscount"
+                    class="price-text"
+                  >
+                    {{ item.price | currency: item.currency }}
+                  </span>
+                </div>
+                <div class="item-discount">
+                  <span *ngIf="item.hasDiscount" class="discount-text">
+                    {{ item.discountedPrice | currency: item.currency }}
+                  </span>
+                </div>
+                <div class="item-quantity">
+                  <app-quantity-selector
+                    [count]="item.cartQuantity"
+                    (countChange)="updateQuantity(item.barcode, $event)"
+                  ></app-quantity-selector>
+                </div>
+                <div class="item-total">
+                  {{
+                    item.discountedPrice * item.cartQuantity
+                      | currency: item.currency
+                  }}
+                </div>
+                <div class="item-actions">
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="removeFromCart(item.barcode)"
+                    class="remove-btn"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <mat-paginator
+              [pageSizeOptions]="[5, 10, 20]"
+              showFirstLastButtons
+              aria-label="Select page of cart items"
+              #MatPager
+            ></mat-paginator>
+
+            <!-- Updated Cart Footer -->
+            <div class="cart-footer" #cartFooter>
+              <div class="action-buttons-container">
+                <div class="secondary-actions" #secondaryActions>
+                  <button
+                    mat-raised-button
+                    (click)="scan()"
+                    class="add-more-btn"
+                    #addMoreBtn
+                  >
+                    <mat-icon>add</mat-icon> Add More Items
+                  </button>
+                  <button
+                    mat-raised-button
+                    (click)="clearCart()"
+                    class="clear-cart-btn"
+                    #clearCartBtn
+                  >
+                    Clear Cart
+                  </button>
+                </div>
+              </div>
+              <div class="summary-card" #summaryCard>
+                <div class="summary-row">
+                  <span class="summary-label">Subtotal</span>
+                  <span class="summary-value">{{
+                    cartTotal | currency: "MMK"
+                  }}</span>
+                </div>
+                <p class="summary-note">
+                  Taxes and shipping calculated at checkout
+                </p>
+                <button
+                  mat-raised-button
+                  matStepperNext
+                  class="checkout-btn"
+                  #checkoutBtn
+                >
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Checkout Step -->
+        <mat-step
+          [stepControl]="checkOutFormGroup"
+          label="Checkout"
+          [completed]="checkoutData !== undefined"
+          [editable]="false"
+        >
+          <ng-template matStepContent>
+            <app-check-out (backToCart)="handleBackToCart()"> </app-check-out>
+          </ng-template>
+        </mat-step>
+        <!-- Payment Step -->
+        <mat-step
+          [stepControl]="paymentFormGroup"
+          label="Payment"
+          [completed]="purchaseData !== undefined"
+          [editable]="false"
+          disabled
+        >
+          <ng-template matStepContent>
+            <app-paypal-return
+              [checkoutData]="checkoutData!"
+              (backToCheckout)="stepper.previous()"
+              (paymentExecuted)="handlePaymentExecuted($event)"
+              (paymentCancelled)="handlePaymentCancelled()"
+            ></app-paypal-return>
+          </ng-template>
+        </mat-step>
+
+        <!-- Done Step -->
+        <mat-step [completed]="true" [editable]="false">
+          <ng-template matStepLabel>Voucher</ng-template>
+
+          <div class="done-step">
+            <div *ngIf="checkoutData; else noData">
+              <app-voucher [checkoutData]="checkoutData"></app-voucher>
+            </div>
+            <ng-template #noData>
+              <p>No checkout data available. Please try again.</p>
+            </ng-template>
+            <div class="voucher-action-buttons">
+              <p>Thank you for your purchase!</p>
+              <button mat-button (click)="stepper.reset(); clearCart()">
+                Start Over<mat-icon>shopping_cart</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </div>
+  </ng-template>
+</div>

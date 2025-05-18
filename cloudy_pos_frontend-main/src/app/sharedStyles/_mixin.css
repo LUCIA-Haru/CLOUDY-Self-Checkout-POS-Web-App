@@ -1,0 +1,212 @@
+/* Toast Styles */
+/* @import "~ngx-toastr/toastr.css"; */
+.toast-success {
+  background-color: #bbeebd; /* Green background */
+  color: white;
+}
+
+.toast-error {
+  background-color: #f08881; /* Red background */
+  color: white;
+}
+
+.toast-warning {
+  background-color: #e2b36d; /* Orange background */
+  color: white;
+}
+.toast-info {
+  background-color: #8bf6fd; /* Blue background */
+  color: white;
+}
+/* Button Styles */
+.btn-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.login-button,
+.confirm-btn {
+  background-color: var(--sky) !important;
+  color: var(--gray-900) !important;
+  font-weight: 500 !important;
+  flex-grow: 1;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover,
+.confirm-btn:hover {
+  background-color: #68e1fd !important;
+}
+
+.reset-button,
+.cancel-btn {
+  background-color: transparent !important;
+  color: var(--gray-900) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  font-weight: 500 !important;
+  flex-grow: 1;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover,
+.cancel-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.alert-success {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+button.mat-raised-button.button-primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.raised-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #3f51b5; /* Primary color */
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  transition: box-shadow 0.3s ease;
+}
+
+.raised-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect on hover */
+}
+
+.raised-button:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Shadow effect on active click */
+}
+
+.raised-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.5); /* Focus outline */
+}
+/* divider */
+.divider {
+  margin-top: 40px;
+  width: clamp(150px, 70%, 600px); /* Min: 150px, Preferred: 50%, Max: 600px */
+  height: 0.5px;
+  background: var(--gray-400) !important;
+  margin-inline: auto; /* Centers the element horizontally */
+}
+.title {
+  font-size: var(--h2-font-size) !important;
+  font-family: var(--title-font) !important;
+  font-weight: var(--font-semi-bold) !important;
+}
+.title-top {
+  padding-top: 6rem;
+}
+/* animation link button design */
+.design-link {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+.mask {
+  position: relative;
+  padding: 0;
+  height: 20px;
+  overflow: hidden;
+}
+.design-link-container {
+  transition: transform 0.4s ease;
+}
+.link-design {
+  display: block;
+  font-size: 17px;
+  line-height: 27px;
+  transition: transform 0.4s ease;
+}
+
+.design_link1 {
+  transform-origin: right center;
+}
+
+.design_link2 {
+  transform-origin: left center;
+  transform: translateY(-60%) rotate(20deg);
+}
+
+/* Hover Action */
+/* .rt-link:hover .rt-link-container {
+  transform: translateY(-17px);
+} */
+
+.design-link:hover .design_link1 {
+  transform: translateY(-27px) rotate(20deg);
+}
+
+.design-link:hover .design_link2 {
+  transform: translateY(-120%) rotate(0);
+}
+
+.design-link .arrow-icon {
+  transition: left 0.3s;
+  position: relative;
+  font-size: 20px;
+  top: 5px;
+  left: 5px;
+  font-weight: bold;
+}
+
+.design-link:hover .arrow-icon {
+  color: var(--text-color);
+  font-weight: 900;
+  left: 1rem;
+  font-size: var(--h3-font-size);
+}
+.dot_img_bg_container {
+  width: 150px;
+  height: 150px;
+  margin: 0 2rem;
+}
+
+.dot_img_svg {
+  background-image: url("assets/shape-circle.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: overlay;
+  display: block;
+  opacity: 0.2;
+  z-index: -1;
+  pointer-events: none;
+  width: clamp(80%, 100%, 110vw);
+  height: 100%;
+}
+.dot_img_bg_container > *:not(.dot_img_svg) {
+  position: relative;
+  z-index: 1;
+}
+/* Section Divider */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.s_d_line {
+  flex: 1;
+  border: 0;
+  height: 2px;
+  background: var(--second-gray);
+}
+
+.section-divider mat-icon {
+  font-size: 24px;
+  color: var(--bold-blue);
+  margin: 0 1rem;
+}

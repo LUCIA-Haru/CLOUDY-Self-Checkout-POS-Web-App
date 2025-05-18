@@ -1,0 +1,325 @@
+<div class="profile-wrapper">
+  <div class="profile-container container-fluid">
+    <h2 class="title text-center title-top">Your Profile</h2>
+    <div class="divider"></div>
+    <div class="row align-items-start">
+      <!-- Profile Picture Column (Left) -->
+      <div class="col-lg-4 col-md-12 mb-4 profile-card-wrapper">
+        <div class="profile-card glassmorphism" #profileCard>
+          <div class="card-body text-center">
+            <div
+              class="img-container"
+              *ngIf="customer.profilePhoto; else noImage"
+            >
+              <img [src]="customer.profilePhoto" alt="Profile Picture" />
+            </div>
+            <ng-template #noImage>
+              <div class="img-placeholder">
+                <i class="fas fa-user-circle"></i>
+              </div>
+            </ng-template>
+            <div class="action-container">
+              <input
+                type="file"
+                (change)="uploadPic($event)"
+                accept="image/*"
+                style="display: none"
+                #fileInput
+              />
+              <button class="btn btn-upload" (click)="fileInput.click()">
+                Upload Photo
+              </button>
+              <button
+                class="btn btn-remove"
+                (click)="removePic(customer.profilePhoto)"
+                *ngIf="customer.profilePhoto"
+              >
+                Remove Photo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Details Column (Right) -->
+      <div class="col-lg-8 col-md-12 mb-4">
+        <div class="form-container glassmorphism" #formContainer>
+          <form
+            *ngIf="customerForm"
+            [formGroup]="customerForm"
+            (ngSubmit)="updateProfile()"
+            class="modern-form"
+          >
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    class="form-control"
+                    formControlName="firstName"
+                    placeholder="Enter first name"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      customerForm.get('firstName')?.invalid &&
+                      customerForm.get('firstName')?.touched
+                    "
+                  >
+                    First name is required.
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    class="form-control"
+                    formControlName="lastName"
+                    placeholder="Enter last name"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      customerForm.get('lastName')?.invalid &&
+                      customerForm.get('lastName')?.touched
+                    "
+                  >
+                    Last name is required.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="Enter email"
+              />
+              <small
+                class="text-danger"
+                *ngIf="
+                  customerForm.get('email')?.invalid &&
+                  customerForm.get('email')?.touched
+                "
+              >
+                Please enter a valid email.
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="phoneNo">Phone Number</label>
+              <input
+                type="text"
+                id="phoneNo"
+                class="form-control"
+                formControlName="phoneNo"
+                placeholder="Enter phone number"
+              />
+              <small
+                class="text-danger"
+                *ngIf="
+                  customerForm.get('phoneNo')?.invalid &&
+                  customerForm.get('phoneNo')?.touched
+                "
+              >
+                Phone number must be 10 digits.
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <textarea
+                id="address"
+                class="form-control"
+                formControlName="address"
+                placeholder="Enter address"
+                rows="3"
+              ></textarea>
+              <small
+                class="text-danger"
+                *ngIf="
+                  customerForm.get('address')?.invalid &&
+                  customerForm.get('address')?.touched
+                "
+              >
+                Address is required.
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="dob">Date of Birth</label>
+              <input
+                type="date"
+                id="dob"
+                class="form-control"
+                formControlName="dob"
+              />
+              <small
+                class="text-danger"
+                *ngIf="
+                  customerForm.get('dob')?.invalid &&
+                  customerForm.get('dob')?.touched
+                "
+              >
+                Date of birth is required.
+              </small>
+            </div>
+            <div class="form-actions">
+              <button
+                type="submit"
+                class="btn btn-update"
+                [disabled]="customerForm.invalid"
+              >
+                Update Profile
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- Change Password Section -->
+        <div class="col-12 mt-5 mb-5 px-4">
+          <div class="glassmorphism p-3 p-md-4" #changePasswordContainer>
+            <form
+              [formGroup]="changePasswordForm"
+              (ngSubmit)="onSubmit()"
+              id="pass-form"
+            >
+              <h5 class="mb-3 fw-bold">Change Password</h5>
+              <div class="row">
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label">Old Password</label>
+                  <div class="pass-container d-flex">
+                    <input
+                      [type]="showOldPassword ? 'text' : 'password'"
+                      formControlName="oldPassword"
+                      class="form-control old_pass"
+                      id="old_pass"
+                      required
+                    />
+                    <div class="show-pass_container">
+                      <span
+                        class="show-pass"
+                        (click)="togglePasswordVisibility('oldPassword')"
+                      >
+                        <mat-icon>{{
+                          showOldPassword ? "visibility" : "visibility_off"
+                        }}</mat-icon>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="oldPassword?.touched && oldPassword?.invalid"
+                    class="text-danger"
+                  >
+                    <small *ngIf="oldPassword?.hasError('required')">
+                      Old password is required.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label">New Password</label>
+                  <div class="pass-container d-flex">
+                    <input
+                      [type]="showNewPassword ? 'text' : 'password'"
+                      formControlName="newPassword"
+                      class="form-control new_pass"
+                      id="new_pass"
+                      required
+                    />
+                    <div class="show-pass_container">
+                      <span
+                        class="show-pass"
+                        (click)="togglePasswordVisibility('newPassword')"
+                      >
+                        <mat-icon>{{
+                          showNewPassword ? "visibility" : "visibility_off"
+                        }}</mat-icon>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="newPassword?.touched && newPassword?.invalid"
+                    class="text-danger"
+                  >
+                    <small *ngIf="newPassword?.hasError('required')">
+                      New password is required.
+                    </small>
+                    <small
+                      *ngIf="
+                        newPassword?.hasError('minlength') ||
+                        newPassword?.hasError('maxlength')
+                      "
+                    >
+                      Password must be between 6 and 20 characters.
+                    </small>
+                    <small *ngIf="newPassword?.hasError('pattern')">
+                      Password must contain at least one numeric digit, one
+                      uppercase, and one lowercase letter.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label">Confirm Password</label>
+                  <div class="pass-container d-flex">
+                    <input
+                      [type]="showConfirmPassword ? 'text' : 'password'"
+                      formControlName="confirmPassword"
+                      class="form-control c-confirm"
+                      id="confirm_pass"
+                      required
+                    />
+                    <div class="show-pass_container">
+                      <span
+                        class="show-pass"
+                        (click)="togglePasswordVisibility('confirmPassword')"
+                      >
+                        <mat-icon>{{
+                          showConfirmPassword ? "visibility" : "visibility_off"
+                        }}</mat-icon>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="confirmPassword?.touched && confirmPassword?.invalid"
+                    class="text-danger"
+                  >
+                    <small *ngIf="confirmPassword?.hasError('required')">
+                      Confirm password is required.
+                    </small>
+                  </div>
+                  <div
+                    *ngIf="
+                      changePasswordForm.hasError('mismatch') &&
+                      confirmPassword?.touched
+                    "
+                    class="text-danger"
+                  >
+                    <small>Passwords do not match.</small>
+                  </div>
+                </div>
+                <span class="p-note col-12">
+                  *Password must be between 6 to 20 characters and contain at
+                  least one numeric digit, one uppercase, and one lowercase
+                  letter.
+                </span>
+              </div>
+              <div class="col-12 p-3 text-end w-100">
+                <button
+                  type="submit"
+                  class="btn btn-color2"
+                  [disabled]="changePasswordForm.invalid"
+                >
+                  Change
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

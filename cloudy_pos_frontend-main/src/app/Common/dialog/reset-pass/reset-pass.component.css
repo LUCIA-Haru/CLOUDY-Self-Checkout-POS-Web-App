@@ -1,0 +1,14 @@
+.reset-password-card {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+button {
+  width: 100%;
+  margin-top: 10px;
+}

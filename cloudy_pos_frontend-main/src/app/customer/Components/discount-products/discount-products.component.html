@@ -1,0 +1,20 @@
+<div class="discount-products-container">
+  <h2 class="section-title title">Discounted Products</h2>
+  <div *ngIf="loading" class="loading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!loading && !error">
+    <app-carousels
+      [items]="discountProducts"
+      (cardClicked)="viewProduct($event.barcode)"
+    ></app-carousels>
+    <button (click)="viewAll()" class="design-link mb-4">
+      <div class="design-link-container">
+        <div class="mask">
+          <span class="link-design design_link1">View All</span>
+          <span class="link-design design_link2">View All</span>
+        </div>
+      </div>
+      <mat-icon class="arrow-icon">arrow_forward</mat-icon>
+    </button>
+  </div>
+</div>

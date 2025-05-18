@@ -1,0 +1,84 @@
+<div *ngIf="errorMessage" class="error">
+  <p>{{ errorMessage }}</p>
+  <button (click)="goBack()">Go Back</button>
+</div>
+
+<!-- Show Skeleton Loader while loading -->
+<div *ngIf="loading" class="skeleton-wrapper">
+  <app-skeleton-loader
+    type="card"
+    [width]="'100%'"
+    [height]="'auto'"
+  ></app-skeleton-loader>
+</div>
+
+<div *ngIf="product && !loading" class="product-detail-container">
+  <!-- Image Section -->
+  <div class="image-section">
+    <div class="main-image" #mainImageContainer>
+      <img [src]="mainImage" alt="Main Product Image" />
+    </div>
+    <div class="thumbnails" #thumbnailContainer>
+      <!-- Renamed #thumbnails to #thumbnailContainer -->
+      <img
+        *ngFor="let thumb of thumbnails"
+        [src]="thumb"
+        alt="Thumbnail"
+        (click)="changeMainImage(thumb)"
+        [class.active]="thumb === mainImage"
+      />
+    </div>
+  </div>
+
+  <!-- Product Info Section -->
+  <div class="product-info" #productInfo>
+    <h2 class="title-top title">{{ product.productName }}</h2>
+    <div class="rating">
+      <span>⭐ {{ product.rating }} ({{ product.rating }})</span>
+    </div>
+    <div class="price">
+      <span *ngIf="product.hasDiscount && product.discount">
+        {{ calculateDiscountedPrice() | number: "1.2-2" }}{{ product.currency }}
+        <span class="original-price"
+          >{{ product.price }}{{ product.currency }}</span
+        >
+      </span>
+      <span *ngIf="!product.hasDiscount">
+        {{ product.price }}{{ product.currency }}
+      </span>
+    </div>
+    <p *ngIf="product.hasDiscount && product.discount" class="discount-info">
+      Discount: {{ product.discount.discountValue
+      }}{{ product.discount.isPercentage ? "%" : product.currency }} off (Valid
+      until {{ product.discount.endDate }})
+    </p>
+    <p>
+      <span class="stock">{{ product.stockUnit }}</span> units left
+    </p>
+    <p><strong>Manufacture Date:</strong> {{ product.manuDate }}</p>
+    <p><strong>Expiry Date:</strong> {{ product.expDate }}</p>
+    <p><strong>Description:</strong> {{ product.productDesc }}</p>
+    <p><strong>Brand:</strong> {{ product.brand }}</p>
+    <p><strong>Category:</strong> {{ product.category }}</p>
+    <p><strong>Barcode:</strong> {{ product.barcode }}</p>
+
+    <!-- Quantity Selector -->
+    <div class="quantity-selector" #quantitySelector>
+      <label for="quantity">Quantity:</label>
+      <app-quantity-selector
+        [count]="quantity"
+        (countChange)="onQuantityChange($event)"
+        [max]="product.stockUnit"
+      ></app-quantity-selector>
+    </div>
+
+    <!-- Add to Cart Button -->
+    <button
+      class="add-to-cart"
+      #addToCartButton
+      (click)="addItemToCart(product, quantity)"
+    >
+      Add to Cart
+    </button>
+  </div>
+</div>

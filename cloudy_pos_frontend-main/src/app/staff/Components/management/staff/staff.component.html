@@ -1,0 +1,14 @@
+<h2 class="title">Staff Management</h2>
+<app-table
+  [columns]="columns"
+  [data]="allStaff"
+  [filterConfig]="filterConfig"
+  [editable]="true"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [entityName]="'Staff'"
+  (onRowAdd)="addStaff($event)"
+  (onRowEdit)="updateStaff($event, $event.user_id)"
+  (onRowRemove)="removeStaff($event)"
+  (pageChange)="onPageChange($event)"
+></app-table>

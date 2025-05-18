@@ -1,0 +1,105 @@
+<!-- src/app/self-checkout/self-checkout.component.html -->
+<div class="self-checkout-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Introducing CLOUDY's Self-Checkout WEB App</h1>
+      <p class="hero-subtitle">
+        Shop smarter with our brand-new WEB app designed for fast and easy
+        self-checkout.
+      </p>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <h2 class="section-title">Why Use the Self-Checkout App?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <img
+          src="assets/—Pngtree—take the phone scan code_4707453 (1).png"
+          alt="Scan Icon"
+          class="feature-icon"
+        />
+        <h3>Scan & Go</h3>
+        <p>Scan items with your phone and skip the lines.</p>
+      </div>
+      <div class="feature-card">
+        <img
+          src="assets/paypal-33.svg"
+          alt="PayPal Icon"
+          class="feature-icon"
+        />
+        <h3>PayPal</h3>
+        <p>Pay securely with your preferred payment method.</p>
+      </div>
+      <div class="feature-card">
+        <img
+          src="assets/d37e5e17957f6b6370d220f0ef7b41c8.png"
+          alt="Offers Icon"
+          class="feature-icon"
+        />
+        <h3>Exclusive Offers</h3>
+        <p>Unlock special discounts only for users.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- History Section -->
+  <section class="history-section">
+    <h2 class="section-title">Our Story</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>2010 - Founded</h3>
+          <p>CLOUDY opened its first store in YANGON.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>2015 - Regional Growth</h3>
+          <p>Expanded to 10 stores across the region.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>2020 - Digital Transformation</h3>
+          <p>Launched online shopping and loyalty program.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>2025 - Self-Checkout App</h3>
+          <p>Introduced our innovative self-checkout mobile app.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store Locator Section -->
+  <section class="store-locator-section" id="branch">
+    <h2 class="section-title">Visit a CLOUDY Store</h2>
+    <button (click)="refreshMap()">Refresh Map</button>
+    <div id="map" class="map-container"></div>
+    <div class="branches-list">
+      <div class="branch-card">
+        <h3>Downtown Store</h3>
+        <p>123 Main St, Cityville</p>
+      </div>
+      <div class="branch-card">
+        <h3>Westside Store</h3>
+        <p>456 Oak Ave, West City</p>
+      </div>
+      <div class="branch-card">
+        <h3>Eastside Store</h3>
+        <p>789 Pine Rd, East Town</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2 class="section-title">Get Started Today</h2>
+    <p>Come and revolutionize your shopping experience, CLOUDY.</p>
+  </section>
+</div>

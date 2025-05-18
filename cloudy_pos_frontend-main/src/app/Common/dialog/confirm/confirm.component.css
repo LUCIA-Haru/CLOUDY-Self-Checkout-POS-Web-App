@@ -1,0 +1,41 @@
+mat-dialog-content p {
+  margin: 0;
+}
+
+mat-dialog-actions {
+  margin-top: 16px;
+}
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.confirm-button {
+  background-color: var(--sky);
+  color: var(--gray-900);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 8px;
+  font-weight: 500;
+  flex-grow: 1;
+  transition: background-color 0.3s ease;
+  padding: 8px;
+}
+
+.confirm-button:hover {
+  background-color: #68e1fd;
+}
+
+.cancel-button {
+  background-color: transparent;
+  color: var(--gray-900);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  font-weight: 500;
+  flex-grow: 1;
+  transition: background-color 0.3s ease;
+  padding: 8px;
+}
+
+.cancel-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

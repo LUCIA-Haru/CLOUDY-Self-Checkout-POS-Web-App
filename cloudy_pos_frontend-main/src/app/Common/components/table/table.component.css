@@ -1,0 +1,280 @@
+.table-container {
+  padding: 20px;
+}
+
+.table-scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1200px;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid var(--gray-200);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.actions-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.search-bar {
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+.search-bar input {
+  padding: 8px;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter-container {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.filter-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  border: 2px solid var(--second-gray);
+  background-color: var(--light);
+  color: var(--gray-700);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filter-btn:hover {
+  background-color: #e9ecef;
+  color: var(--dark);
+  border-color: var(--dark);
+}
+
+.funnel-icon i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.filter-status {
+  margin-left: 8px;
+}
+
+.filter-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 0;
+  margin-top: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 120px;
+}
+
+.filter-panel a {
+  display: block;
+  padding: 5px 15px;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.filter-panel a:hover {
+  background-color: #f8f9fa;
+}
+
+th {
+  background-color: var(--beige-blue);
+  position: relative;
+}
+
+th.sortable {
+  cursor: pointer;
+}
+
+th.sortable:hover {
+  background-color: var(--main-gray-hover);
+}
+
+th.sorted::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  vertical-align: middle;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+th.asc::after {
+  border-bottom: 4px solid #000;
+}
+
+th.desc::after {
+  border-top: 4px solid #000;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.pagination {
+  padding: 10px;
+  background-color: #f4f3f6;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pagination ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination .page-item {
+  margin: 0 2px;
+}
+
+.pagination .page-link {
+  padding: 6px 12px;
+  border: 1px solid #dee2e6;
+  color: var(--dark);
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--gray-400);
+  color: #fff;
+  border-color: var(--second-gray);
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #6c757d;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+.pagination .page-link:hover:not(.disabled) {
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.pagination .page-item span.page-link {
+  background-color: transparent;
+  border: none;
+  color: var(--dark);
+  cursor: default;
+}
+
+.text-success {
+  color: var(--success);
+  font-weight: bold;
+}
+
+.text-danger {
+  color: var(--danger);
+  font-weight: bold;
+}
+
+.edit-icon {
+  cursor: pointer;
+  color: var(--gray-400);
+  font-size: 16px;
+}
+
+.edit-icon:hover {
+  color: var(--gray-700);
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  border: 2px solid var(--gray-200);
+  background-color: var(--beige-blue);
+  color: var(--gray-400);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  margin-bottom: 2rem;
+}
+
+.add-btn:hover {
+  background-color: var(--main-gray-hover);
+  color: var(--dark);
+}
+
+.add-btn i {
+  margin-right: 8px;
+}
+
+.thumbnail {
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1);
+}
+
+.no-image {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.view-low-stock {
+  width: 80%;
+  height: 100% !important;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  background: var(--sky);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.view-low-stock:hover {
+  background: var(--sky-hover);
+}

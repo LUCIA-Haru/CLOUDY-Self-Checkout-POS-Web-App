@@ -1,0 +1,7 @@
+.terms-and-conditions {
+  padding: 3rem;
+  text-wrap: wrap;
+}
+.terms-and-conditions ul {
+  list-style: square;
+}

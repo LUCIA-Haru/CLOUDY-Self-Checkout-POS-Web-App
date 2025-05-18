@@ -1,0 +1,42 @@
+<div class="carousel-container">
+  <div class="carousel" #carousel>
+    <div
+      class="carousel-item"
+      *ngFor="let item of items; let i = index"
+      [attr.data-index]="i"
+    >
+      <app-card
+        [image]="
+          item.imageUrls && item.imageUrls[0]?.imgUrl
+            ? (item.imageUrls[0].imgUrl | fullImageUrl)
+            : '/assets/default-image.jpg'
+        "
+        [title]="item.productName || 'No Title'"
+        [description]="item.productDesc || 'No description available'"
+        [price]="item.discountedPrice || 0"
+        [currency]="item.currency || '$'"
+        [discount]="
+          item.discounts && item.discounts[0]?.discountValue
+            ? item.discounts[0].discountValue
+            : undefined
+        "
+        [isPercentage]="
+          item.discounts && item.discounts[0]?.isPercentage
+            ? item.discounts[0].isPercentage
+            : false
+        "
+        (clicked)="onCardClick(item)"
+      ></app-card>
+    </div>
+  </div>
+  <button class="prev-btn" (click)="prev()" [disabled]="currentIndex === 0">
+    ❮
+  </button>
+  <button
+    class="next-btn"
+    (click)="next()"
+    [disabled]="currentIndex >= maxIndex"
+  >
+    ❯
+  </button>
+</div>

@@ -1,0 +1,70 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  line-height: 1.6;
+  color: var(--dark);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--body-font);
+  font-size: var(--font-normal);
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--success);
+    cursor: pointer;
+  }
+}
+
+ul,
+ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+blockquote {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-left: 4px solid #ccc;
+  background-color: #f9f9f9;
+}
+/*------- remove arrow input type number ----------*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* scrollbar */
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+  border-radius: 0.5rem;
+  background-color: var(--main-gray);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray-700);
+  border-radius: 0.5rem;
+}

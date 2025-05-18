@@ -1,0 +1,115 @@
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  background: linear-gradient(
+    135deg,
+    var(--gray-100),
+    var(--gray-200)
+  ); /* Subtle gradient */
+  width: clamp(
+    120px,
+    20vw,
+    150px
+  ); /* Min 120px, max 150px, scales with viewport */
+  padding: clamp(3px, 0.5vw, 5px) clamp(5px, 1vw, 10px);
+  border-radius: 50px;
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3); /* Outer shadow + inner highlight */
+  border: 1px solid var(--gray-400);
+  transition: all 0.3s ease;
+}
+
+.quantity-selector:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(
+    135deg,
+    var(--gray-200),
+    var(--gray-100)
+  ); /* Reverse gradient */
+}
+
+button {
+  width: clamp(25px, 4vw, 30px);
+  height: clamp(25px, 4vw, 30px);
+  border: none;
+  background: linear-gradient(to bottom, var(--gray-400), var(--gray-600));
+  color: var(--white);
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.2s ease,
+    background 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: scale(1.1); /* Slight grow effect */
+  background: linear-gradient(
+    to bottom,
+    var(--gray-600),
+    var(--gray-400)
+  ); /* Reverse gradient */
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.95); /* Pressed effect */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+}
+
+button:disabled {
+  background: var(--gray-200);
+  color: var(--gray-600); /* Dimmed text */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+span {
+  font-size: clamp(16px, 2.5vw, 18px);
+  font-weight: bold;
+  color: var(--gray-900); /* Darker text for contrast */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 0 clamp(5px, 1vw, 10px); /* Breathing room */
+}
+/* Media Queries for Fine-Tuning */
+@media (max-width: 768px) {
+  .quantity-selector {
+    width: clamp(100px, 25vw, 130px); /* Slightly smaller on tablets */
+    padding: 3px 8px;
+    border-radius: 40px; /* Slightly less extreme pill shape */
+  }
+
+  button {
+    width: clamp(20px, 5vw, 25px);
+    height: clamp(20px, 5vw, 25px);
+    font-size: clamp(12px, 2.5vw, 14px);
+  }
+
+  span {
+    font-size: clamp(14px, 3vw, 16px);
+  }
+}
+
+@media (max-width: 480px) {
+  .quantity-selector {
+    width: clamp(80px, 30vw, 120px); /* Even smaller on mobile */
+    padding: 2px 6px;
+    gap: 5px;
+    border-radius: 30px;
+  }
+
+  button {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+
+  span {
+    font-size: 14px;
+    padding: 0 5px;
+  }
+}

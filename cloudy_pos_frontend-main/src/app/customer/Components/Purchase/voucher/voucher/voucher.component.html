@@ -1,0 +1,63 @@
+<div class="voucher-container">
+  <div class="voucher-header">
+    <h2 class="voucher-title">Your Purchase Voucher</h2>
+    <p class="voucher-subtitle">Review and download your transaction details</p>
+  </div>
+
+  <div class="voucher-view" *ngIf="pdfUrl; else loadingOrError">
+    <div class="voucher-card">
+      <div class="pdf-preview">
+        <iframe
+          [src]="pdfUrl"
+          width="100%"
+          height="500px"
+          title="Voucher PDF"
+          aria-label="Voucher PDF preview"
+        ></iframe>
+      </div>
+      <div class="action-buttons">
+        <button
+          mat-raised-button
+          color="primary"
+          class="download-btn"
+          (click)="downloadVoucher()"
+          aria-label="Download voucher PDF"
+        >
+          <span class="material-icons">download</span> Download Voucher
+        </button>
+        <!-- <button
+          mat-stroked-button
+          color="accent"
+          class="share-btn"
+          (click)="shareVoucher()"
+          aria-label="Share voucher"
+        >
+          <span class="material-icons">share</span> Share
+        </button> -->
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingOrError>
+    <div class="status-container" *ngIf="errorMessage; else loading">
+      <div class="error-state">
+        <span class="material-icons error-icon">error_outline</span>
+        <p>{{ errorMessage }}</p>
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="retryGenerateVoucher()"
+          aria-label="Retry generating voucher"
+        >
+          Try Again
+        </button>
+      </div>
+    </div>
+    <ng-template #loading>
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading your voucher...</p>
+      </div>
+    </ng-template>
+  </ng-template>
+</div>

@@ -1,0 +1,17 @@
+<div *ngIf="isCustomerPage(); else staffOrDefault">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>
+
+<ng-template #staffOrDefault>
+  <div *ngIf="isStaffPage(); else defaultLayout" class="admin-layout">
+    <div class="admin-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #defaultLayout>
+  <router-outlet></router-outlet>
+</ng-template>

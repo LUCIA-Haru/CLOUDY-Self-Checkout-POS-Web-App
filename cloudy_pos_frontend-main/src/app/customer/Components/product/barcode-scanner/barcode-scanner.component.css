@@ -1,0 +1,109 @@
+.scanner-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.video-container {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative; /* Ensure video is positioned relative to container */
+  aspect-ratio: 4 / 3; /* Maintain a consistent aspect ratio (adjust as needed) */
+}
+
+/* Style for the video element */
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure video fills container while maintaining aspect ratio */
+  display: block; /* Remove any inline spacing */
+}
+
+/* Buttons */
+.manual_btn,
+.search_btn {
+  margin: 20px 2rem;
+  padding: 10px 20px;
+  background: var(--gray-400);
+  color: var(--light);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: var(--gray-200);
+  color: var(--dark);
+}
+
+.next_btn {
+  margin: 20px 2rem;
+  padding: 10px 20px;
+  background: var(--gray-200);
+  color: var(--dark);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.next_btn:hover {
+  background: var(--gray-400);
+  color: var(--light);
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.result p {
+  font-weight: bold;
+}
+
+.manual-input {
+  margin: 20px 0;
+}
+
+.manual-input input {
+  padding: 10px;
+  width: 100%; /* Make input responsive */
+  max-width: 400px; /* Limit max width */
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.manual-input input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Media Query for Mobile */
+@media screen and (max-width: 798px) {
+  .video-container {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .video-container video {
+    object-fit: cover;
+  }
+
+  .manual-input input {
+    width: 100%;
+    max-width: none;
+  }
+
+  .manual_btn,
+  .search_btn,
+  .next_btn {
+    margin: 10px 1rem;
+    padding: 8px 16px;
+  }
+}

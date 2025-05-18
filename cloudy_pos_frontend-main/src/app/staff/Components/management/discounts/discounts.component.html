@@ -1,0 +1,20 @@
+<div class="discounts-container">
+  <h2 class="title">Discounts</h2>
+  <app-table
+    [columns]="columns"
+    [data]="discounts"
+    [filterConfig]="filterConfig"
+    [editable]="true"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    [totalElementsInput]="totalElements"
+    [totalPagesInput]="totalPages"
+    [excludedFields]="excludedFields"
+    [entityName]="'Discount'"
+    (pageChange)="onPageChange($event)"
+    (onRowAdd)="onRowAdd($event)"
+    (onRowEdit)="onRowEdit($event)"
+    (onRowRemove)="onRowRemove($event)"
+    (filterChange)="onFilterChange($event)"
+  ></app-table>
+</div>

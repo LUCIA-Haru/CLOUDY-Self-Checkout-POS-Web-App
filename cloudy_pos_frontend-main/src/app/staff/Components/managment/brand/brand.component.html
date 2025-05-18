@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <h2 class="title">Brand Management</h2>
+  <div class="table-container">
+    <app-table
+      [columns]="columns"
+      [data]="brands"
+      [filterConfig]="filterConfig"
+      [editable]="true"
+      [pageSize]="pageSize"
+      [currentPage]="currentPage"
+      [totalElementsInput]="totalElements"
+      [totalPagesInput]="totalPages"
+      [entityName]="'Brand'"
+      (pageChange)="onPageChange($event)"
+      (filterChange)="onFilterChange($event)"
+      (onRowAdd)="onRowAdd($event)"
+      (onRowEdit)="onRowEdit($event)"
+      (onRowRemove)="onRowRemove($event)"
+    ></app-table>
+  </div>
+</div>

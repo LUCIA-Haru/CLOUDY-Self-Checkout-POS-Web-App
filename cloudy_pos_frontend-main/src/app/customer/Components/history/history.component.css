@@ -1,0 +1,131 @@
+/* body {
+  background: linear-gradient(135deg, #1e1e2f 0%, #2a2a4a 100%);
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #d1d5db;
+} */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.history-card {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gray-900);
+  font-family: var(--title-font);
+  font-weight: 900;
+}
+
+.status-completed {
+  color: #34d399; /* Green */
+  font-weight: 500;
+}
+
+.status-pending {
+  color: #c9a207; /* Yellow */
+  font-weight: 500;
+}
+
+.status-cancelled {
+  color: #f87171; /* Red */
+  font-weight: 500;
+}
+
+.status-default {
+  color: #9ca3af; /* Gray */
+  font-weight: 500;
+}
+
+.purchase-details {
+  margin-bottom: 16px;
+}
+
+.purchase-details p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: var(--third-gray);
+}
+
+.purchase-details strong {
+  color: var(--dark);
+  font-weight: bolder;
+}
+
+.item-list {
+  list-style: disc;
+  margin-left: 24px;
+  margin-top: 8px;
+}
+
+.item-list li {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.voucher-button {
+  width: 100%;
+  padding: 8px;
+  background: linear-gradient(to right, #a855f7, #6366f1);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.voucher-button:hover {
+  background: linear-gradient(to right, #9333ea, #4f46e5);
+}
+
+.voucher-button:disabled {
+  background: #4b5563;
+  opacity: 0.5;
+  cursor: not-allowed;
+}

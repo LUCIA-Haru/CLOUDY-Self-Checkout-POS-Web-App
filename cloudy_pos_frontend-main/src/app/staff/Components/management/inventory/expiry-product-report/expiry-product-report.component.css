@@ -1,0 +1,25 @@
+.container {
+  padding: 16px;
+}
+
+.threshold-input {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.threshold-input label {
+  font-weight: bold;
+}
+
+.threshold-input input {
+  width: 150px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.table-container {
+  padding: 16px;
+}

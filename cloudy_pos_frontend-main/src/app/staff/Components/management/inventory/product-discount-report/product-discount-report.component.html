@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="table-container">
+    <app-table
+      [columns]="columns"
+      [data]="products"
+      [filterConfig]="filterConfig"
+      [editable]="false"
+      [pageSize]="pageSize"
+      [currentPage]="currentPage"
+      [entityName]="'Discounted Product'"
+      (pageChange)="onPageChange($event)"
+      (filterChange)="onFilterChange($event)"
+      (onImageManage)="openImageUploadDialog($event)"
+    ></app-table>
+  </div>
+</div>

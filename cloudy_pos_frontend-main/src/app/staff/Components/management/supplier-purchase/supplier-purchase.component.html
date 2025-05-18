@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <h2 class="title">Supplier Purchase Management</h2>
+  <app-table
+    [columns]="columns"
+    [data]="allTransactions"
+    [editable]="true"
+    [showActions]="false"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    [entityName]="'Purchase'"
+    (pageChange)="onPageChange($event)"
+    (onRowAdd)="onRowAdd($event)"
+    (filterChange)="onFilterChange($event)"
+  ></app-table>
+</div>

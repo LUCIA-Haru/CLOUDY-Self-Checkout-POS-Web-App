@@ -1,0 +1,53 @@
+<div class="container-fluid min-vh-100 bg-light py-4">
+  <!-- Header -->
+  <header class="mb-4 d-flex justify-content-between align-items-center">
+    <h1 class="display-4 fw-bold text-dark hero-title">Secondary Dashboard</h1>
+    <a class="btn btn-prev" routerLink="/staff/manager-dashboard">Previous</a>
+  </header>
+
+  <!-- Customer Demographics -->
+  <div
+    class="card shadow-sm mb-4 chart-card"
+    data-animation="scrollSlideInFromBottom"
+  >
+    <div class="card-body">
+      <h2 class="card-title h5 fw-semibold text-secondary mb-3">
+        Customer Demographics
+      </h2>
+      <canvas id="customerDemographicsChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Loyalty Points Table -->
+  <div class="card shadow-sm table-card" data-animation="scrollFadeIn">
+    <div class="card-body">
+      <h2 class="card-title h5 fw-semibold text-secondary mb-3">
+        Loyalty Points Usage
+      </h2>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">User ID</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Points Earned</th>
+              <th scope="col">Points Used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let loyalty of dashboardData?.loyaltyPointsUsage"
+              class="table-row"
+              data-animation="staggerScrollAppear"
+            >
+              <td>{{ loyalty.userId }}</td>
+              <td>{{ loyalty.firstName || "N/A" }}</td>
+              <td>{{ loyalty.pointsEarned }}</td>
+              <td>{{ loyalty.pointsUsed }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

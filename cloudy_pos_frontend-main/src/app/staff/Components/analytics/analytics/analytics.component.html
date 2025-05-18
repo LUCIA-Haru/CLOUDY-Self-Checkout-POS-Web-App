@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <div class="container-fluid">
+    <h2 class="title">Analytics</h2>
+    <mat-tab-group
+      class="tab-group mt-5"
+      mat-stretch-tabs="false"
+      mat-align-tabs="start"
+    >
+      <mat-tab label="Customers"
+        ><app-customer-data></app-customer-data
+      ></mat-tab>
+      <mat-tab label="Staff"><app-staff-data></app-staff-data></mat-tab>
+      <mat-tab label="Suppliers">
+        <app-supplier-data></app-supplier-data>
+      </mat-tab>
+      <mat-tab label="Sale"> <app-sales-data></app-sales-data> </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

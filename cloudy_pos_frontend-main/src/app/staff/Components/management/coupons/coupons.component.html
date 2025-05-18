@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <h2 class="title mb-2">Coupons Management</h2>
+  <div class="actions-bar mt-3 float-end">
+    <button class="assign-btn" (click)="openAssignDialog()">
+      <i class="fas fa-link"></i> Assign Coupon
+    </button>
+  </div>
+  <app-table
+    [columns]="columns"
+    [data]="coupons"
+    [filterConfig]="filterConfig"
+    [editable]="true"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    [totalPagesInput]="totalPages"
+    [entityName]="'Coupon'"
+    [editable]="true"
+    (onRowAdd)="generateCoupon($event)"
+    (onRowEdit)="updateCoupon($event)"
+    (onRowRemove)="deleteCoupon($event)"
+  ></app-table>
+</div>

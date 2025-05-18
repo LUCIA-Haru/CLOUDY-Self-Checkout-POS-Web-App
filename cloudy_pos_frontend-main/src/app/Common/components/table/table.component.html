@@ -1,0 +1,202 @@
+<div class="table-container">
+  <!-- Actions Bar -->
+  <div class="actions-bar">
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="searchTerm"
+        (input)="search()"
+      />
+    </div>
+  </div>
+  <button class="add-btn" (click)="openAddDialog()" *ngIf="editable">
+    <i class="fas fa-plus"></i> Add New
+  </button>
+  <!-- Dynamic Filter Dropdown -->
+  <div class="filter-container" *ngIf="filterConfig">
+    <div class="filter-wrapper">
+      <button class="filter-btn" (click)="showFilterPanel = !showFilterPanel">
+        <span class="funnel-icon">
+          <i class="fas fa-filter"></i>
+        </span>
+        Filter by {{ filterConfig.column }}
+        <span class="filter-status">{{ filterValue | titlecase }}</span>
+      </button>
+      <div class="filter-panel" *ngIf="showFilterPanel">
+        <a
+          *ngFor="let option of filterConfig.options"
+          (click)="filterByColumn(option.value); showFilterPanel = false"
+        >
+          {{ option.label }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table with Scroll Wrapper -->
+  <div class="table-scroll-wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <th
+            *ngFor="let col of columns"
+            (click)="sort(col.key)"
+            [class.sortable]="col.sortable"
+            [class.sorted]="sortColumn === col.key"
+            [class.asc]="sortDirection === 'asc' && sortColumn === col.key"
+            [class.desc]="sortDirection === 'desc' && sortColumn === col.key"
+            [hidden]="col.hidden"
+          >
+            {{ col.label }}
+            <span
+              class="sort-icon"
+              *ngIf="col.sortable && sortColumn === col.key"
+            ></span>
+          </th>
+          <th *ngIf="editable && showActions">Actions</th>
+          <th *ngIf="hasViewLowStock()">LowStockProducts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of paginatedData">
+          <td *ngFor="let col of columns" [hidden]="col.hidden">
+            <!-- Handle select type columns (e.g., supplierId, categoryId, brandId) -->
+            <span
+              *ngIf="
+                col.type === 'select' && col.options && col.options.length > 0
+              "
+            >
+              {{
+                getOptionLabel(col.options, row[col.key]?.toString()) ||
+                  row[col.key] ||
+                  "N/A"
+              }}
+            </span>
+            <!-- Handle products column -->
+            <span *ngIf="col.key === 'products'">
+              {{ getProductIds(row) }}
+            </span>
+            <!-- Handle createdBy -->
+            <span *ngIf="col.key === 'createdBy'">
+              {{ row[col.key] || "N/A" }}
+            </span>
+            <!-- Handle status column -->
+            <span
+              *ngIf="col.key === 'status'"
+              [class.text-success]="
+                (row[col.key] + '').toLowerCase() === 'active'
+              "
+              [class.text-danger]="
+                (row[col.key] + '').toLowerCase() === 'inactive'
+              "
+            >
+              {{ row[col.key] }}
+            </span>
+            <!-- Handle imgUrls column (for ProductManagementComponent) -->
+            <span *ngIf="col.key === 'imgUrls' && row.mainImageUrl">
+              <img
+                [src]="row.mainImageUrl"
+                class="thumbnail"
+                (click)="onImageManage.emit(row)"
+                title="Manage Images"
+              />
+            </span>
+            <span
+              *ngIf="col.key === 'imgUrls' && !row.mainImageUrl"
+              class="no-image"
+              (click)="onImageManage.emit(row)"
+            >
+              No Main Image
+            </span>
+            <!-- Handle mainImage column (for ProductDiscountReportComponent) -->
+            <span *ngIf="col.key === 'mainImage' && row.mainImage">
+              <img
+                [src]="row.mainImage"
+                class="thumbnail"
+                (click)="onImageManage.emit(row)"
+                title="Manage Images"
+              />
+            </span>
+            <span
+              *ngIf="col.key === 'mainImage' && !row.mainImage"
+              class="no-image"
+              (click)="onImageManage.emit(row)"
+            >
+              No Main Image
+            </span>
+            <!-- Default rendering for other columns -->
+            <span
+              *ngIf="
+                col.key !== 'status' &&
+                col.key !== 'imgUrls' &&
+                col.key !== 'mainImage' &&
+                col.key !== 'products' &&
+                col.key !== 'createdBy' &&
+                col.type !== 'select'
+              "
+            >
+              {{ row[col.key] }}
+            </span>
+          </td>
+          <td
+            *ngIf="editable && showActions"
+            class="d-flex align-items-center justify-content-between"
+          >
+            <i
+              class="fas fa-edit edit-icon mr-4"
+              (click)="openEditDialog(row)"
+              title="Edit"
+            ></i>
+            <i
+              class="fas fa-trash delete-icon"
+              (click)="remove(row)"
+              title="Remove"
+            ></i>
+          </td>
+          <td *ngIf="hasViewLowStock()">
+            <button
+              *ngIf="shouldShowLowStockButton(row)"
+              class="view-low-stock"
+              (click)="openLowStockDialog(row)"
+              title="View Low Stock Products"
+            >
+              View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <nav class="pagination">
+    <ul>
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
+      </li>
+      <li
+        class="page-item"
+        *ngFor="let page of getPageNumbers()"
+        [class.active]="page === currentPage"
+      >
+        <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+      </li>
+      <li class="page-item" *ngIf="currentPage < totalPages - 2">
+        <span class="page-link">...</span>
+      </li>
+      <!-- Only show the last page if it's not already in the page numbers -->
+      <li
+        class="page-item"
+        *ngIf="
+          currentPage < totalPages - 1 && !getPageNumbers().includes(totalPages)
+        "
+      >
+        <a class="page-link" (click)="goToPage(totalPages)">{{ totalPages }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

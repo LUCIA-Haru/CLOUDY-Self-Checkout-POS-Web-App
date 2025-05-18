@@ -1,0 +1,55 @@
+.image-upload-dialog {
+  padding: 20px;
+}
+.image-upload-dialog h2 {
+  margin: 10px;
+  text-align: center;
+  font-family: var(--title-font);
+}
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: var(--beige-blue);
+  box-shadow: 0 2px 3px rgb(0, 0, 0, 0.5);
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.image-item {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image-item img {
+  height: 50%;
+}
+.image-item .set-as-main {
+  background: var(--main-gray);
+  margin: 10px;
+}
+.upload-section {
+  margin-top: 20px;
+}
+.delete {
+  color: var(--danger);
+}
+.actions {
+  margin-top: 20px;
+  text-align: right;
+}
+.save_btn {
+  width: 20%;
+  padding: 0.2rem;
+  color: var(--dark);
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: none;
+  background: var(--second-gray);
+  transition: background 0.3s ease;
+}
+.save_btn:hover {
+  color: var(--light);
+  background: var(--gray-400);
+}

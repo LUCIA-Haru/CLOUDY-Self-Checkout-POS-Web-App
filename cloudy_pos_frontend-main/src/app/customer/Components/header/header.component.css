@@ -1,0 +1,327 @@
+/* Glassmorphism Header (Desktop) */
+.header-glass {
+  display: none; /* Hidden by default, shown at 799px and above */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  will-change: transform;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo-container .logo {
+  width: 50px;
+}
+
+.tab-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tab-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: color 0.3s ease;
+}
+
+.tab-link:hover,
+.tab-link.active {
+  color: #007bff;
+}
+
+.avatarContainer {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5rem;
+}
+
+.user-name {
+  font-family: var(--title-font);
+}
+
+/* Mobile Header */
+.mobile-header {
+  display: none; /* Hidden by default, shown at 798px and below */
+  position: fixed;
+  bottom: 2rem; /* Float slightly above the bottom */
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0 1rem;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3rem;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 40px;
+}
+
+.nav__buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.login-button {
+  width: 100px;
+  padding: 5px;
+  font-size: 1rem;
+  background: var(--sky);
+  border: none;
+  font-family: var(--title-font);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+.login-button:hover {
+  background: var(--sky-hover);
+}
+.scan-button {
+  /* Purple background for the Scan button */
+  border-radius: 12px; /* Square with rounded corners */
+  width: 48px;
+  height: 48px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.scan-button mat-icon {
+  color: var(--dark);
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.nav__toggle {
+  cursor: pointer;
+}
+
+.nav__toggle mat-icon {
+  font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #333;
+}
+
+/* Slide-up Menu */
+.nav__menu {
+  position: fixed;
+  bottom: -100%; /* Start off-screen at the bottom */
+  left: 0;
+  width: 100%;
+  max-height: 80vh; /* Limit height to avoid covering the entire screen */
+  background: rgba(250, 249, 249, 0.658);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  transition: bottom 0.3s ease-in-out;
+  z-index: 1001;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav__menu.show-menu {
+  bottom: 0; /* Slide up to the bottom */
+}
+
+.nav__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #333;
+  text-transform: uppercase; /* Match the uppercase "GUEST" in the screenshot */
+}
+
+.nav__close {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.nav__close mat-icon {
+  font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.login-icon-button mat-icon {
+  font-size: 1.5rem;
+  color: var(--dark);
+}
+/* Grid Layout for Main Links */
+.nav__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.nav__grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.nav__grid-item mat-icon {
+  font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark); /* Lighter color for icons */
+}
+
+.nav__grid-item:hover {
+  color: var(--sky-hover);
+}
+
+.nav__list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.nav__item {
+  margin-bottom: 1.5rem;
+}
+
+/* .nav__link {
+  display: flex;
+  align-items: center;
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+} */
+
+/* .nav__link mat-icon {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #666;
+} */
+
+/* Logout Button */
+.logout-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: var(--dark);
+  border-radius: 0.5rem;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.logout-button:hover {
+  background: var(--sky-hover);
+}
+
+/* Backdrop */
+.nav__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.nav__backdrop.show-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Media Queries */
+@media screen and (max-width: 798px) {
+  .mobile-header {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 799px) {
+  .mobile-header {
+    display: none; /* Hide on desktop for now */
+  }
+  .header-glass {
+    display: block !important;
+  }
+}
+
+/* Dropdown Menu Styles */
+:host ::ng-deep .mat-menu-panel {
+  margin: 10px !important;
+  left: auto !important;
+  right: 0 !important;
+  transform: none !important;
+}
+
+:host ::ng-deep .mat-menu-item {
+  font-size: 14px;
+  color: #333;
+  padding: 8px 16px;
+}
+
+:host ::ng-deep .mat-menu-item:hover {
+  background: #f5f5f5;
+}
+
+:host ::ng-deep .mat-divider {
+  width: 100% !important;
+  margin: 8px 0 !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
+}

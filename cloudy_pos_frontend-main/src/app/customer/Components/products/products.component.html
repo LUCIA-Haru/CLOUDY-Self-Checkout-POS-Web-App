@@ -1,0 +1,139 @@
+<div class="products-list-wrapper">
+  <h2 class="section-title title-top">Available Products</h2>
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search products by name..."
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+    />
+  </div>
+  <!-- Filter Controls -->
+  <div class="filter">
+    <div class="filter-options">
+      <button
+        *ngFor="let range of discountRanges"
+        [class.active]="selectedFilter === range.value"
+        (click)="filterByDiscount(range.value)"
+      >
+        {{ range.label }}
+      </button>
+    </div>
+  </div>
+  <div class="row products-list-container">
+    <div class="col-md-3 col-sm-5 filter_bc_container">
+      <div class="bc-options">
+        <!-- Brand Filter -->
+        <div class="filter-section">
+          <h4 class="filter-title" (click)="toggleSection('brands')">
+            Brands
+            <span class="toggle-icon">{{ showMoreBrands ? "▲" : "▼" }}</span>
+          </h4>
+          <div class="filter-content" [class.expanded]="showMoreBrands">
+            <label *ngFor="let brand of displayedBrands; let i = index">
+              <input
+                type="checkbox"
+                [checked]="selectedBrands.includes(brand.name)"
+                (change)="toggleBrand(brand.name)"
+              />
+              {{ brand.name }}
+            </label>
+            <a
+              *ngIf="brands.length > 5"
+              class="show-more"
+              (click)="toggleShowMore('brands')"
+            >
+              {{
+                showMoreBrands
+                  ? "Show less"
+                  : "Show " + (brands.length - 5) + " more"
+              }}
+            </a>
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-section">
+          <h4 class="filter-title" (click)="toggleSection('categories')">
+            Categories
+            <span class="toggle-icon">{{
+              showMoreCategories ? "▲" : "▼"
+            }}</span>
+          </h4>
+          <div class="filter-content" [class.expanded]="showMoreCategories">
+            <label *ngFor="let category of displayedCategories; let i = index">
+              <input
+                type="checkbox"
+                [checked]="selectedCategories.includes(category.categoryName)"
+                (change)="toggleCategory(category.categoryName)"
+              />
+              {{ category.categoryName }}
+            </label>
+            <a
+              *ngIf="categories.length > 5"
+              class="show-more"
+              (click)="toggleShowMore('categories')"
+            >
+              {{
+                showMoreCategories
+                  ? "Show less"
+                  : "Show " + (categories.length - 5) + " more"
+              }}
+            </a>
+          </div>
+        </div>
+
+        <!-- Filter Actions -->
+        <div class="filter-actions">
+          <button class="clear-btn" (click)="clearFilters()">Clear</button>
+          <button class="apply-btn" (click)="applyFilters()">Apply</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 col-md-6">
+      <!-- Products Grid -->
+      <div *ngIf="filteredProducts.length > 0" class="grid-view">
+        <ng-container *ngFor="let product of filteredProducts">
+          <app-card
+            [image]="
+              product.imageUrls && product.imageUrls[0].imgUrl
+                ? (product.imageUrls[0].imgUrl | fullImageUrl)
+                : 'assets/default-image.jpg'
+            "
+            [title]="product.productName || 'No Title'"
+            [description]="product.productDesc || 'No description available'"
+            [price]="product.discountedPrice ?? product.price"
+            [currency]="product.currency || '$'"
+            [discount]="
+              product.discounts && product.discounts[0].discountValue
+                ? product.discounts[0].discountValue
+                : 0
+            "
+            [isPercentage]="
+              product.discounts && product.discounts[0].isPercentage
+                ? product.discounts[0].isPercentage
+                : false
+            "
+            (clicked)="viewProduct(product.barcode)"
+          >
+          </app-card>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="filteredProducts.length === 0" class="no-products-message">
+    <img
+      src="assets/No_Product_Found.png"
+      alt="No products"
+      class="empty-state-image"
+    />
+    <h3>No products match your filter</h3>
+    <p>Try selecting a different discount range</p>
+    <button (click)="filterByDiscount('all')" class="reset-filter-btn">
+      Show All Products
+    </button>
+  </div>
+</div>

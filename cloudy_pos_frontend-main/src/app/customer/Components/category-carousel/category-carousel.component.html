@@ -1,0 +1,87 @@
+<div class="dot_img_bg_container"><span class="dot_img_svg"></span></div>
+<section class="category_carousel_wrapper">
+  <div class="category-carousel-container container-fluid">
+    <div class="category-carousel">
+      <div class="carousel-track" #carouselTrack>
+        <div class="carousel-item" *ngFor="let item of items">
+          <img [src]="item.src" [alt]="item.alt" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- coupon section and loyalty points ads start -->
+<section class="coupon_lp_wrapper">
+  <div class="container-fluid coupon_lp_container">
+    <h2 class="main-title text-center text-uppercase title" id="offers-title">
+      Offers
+    </h2>
+    <div class="h-line s-line"></div>
+    <div class="container-fluid mini-service-container">
+      <!-- Coupons Section -->
+      <div class="row coupon d-sm-flex align-items-center">
+        <div class="col-sm-6">
+          <div class="service-text_container" id="coupon-text">
+            <h3 class="mini-title text-uppercase">Coupons</h3>
+            <p class="service-description">
+              Unlock exclusive savings with Cloudy Web App's coupons! Enjoy
+              discounts on premium features, subscriptions, and in-app
+              purchases. Whether you're upgrading your plan or exploring new
+              tools, our coupons make every moment count. Check back often for
+              fresh deals!
+            </p>
+            <a routerLink="/offer" class="design-link mb-4">
+              <div class="design-link-container">
+                <div class="mask">
+                  <span class="link-design design_link1">Learn More</span>
+                  <span class="link-design design_link2">Learn More</span>
+                </div>
+              </div>
+              <mat-icon class="arrow-icon">arrow_forward</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="service-img_container" id="coupon-image">
+            <img src="assets/coupon.png" alt="Coupon Discount" />
+          </div>
+        </div>
+      </div>
+      <!-- Section Divider -->
+      <div class="section-divider d-sm-none d-xs-block">
+        <hr class="s_d_line" />
+        <mat-icon class="divider-icon">diamond</mat-icon>
+        <hr class="s_d_line" />
+      </div>
+      <!-- Loyalty Points Section -->
+      <div class="row lp d-sm-flex justify-content-around align-items-center">
+        <div class="col-sm-6">
+          <div class="lp-img_container" id="loyalty-image">
+            <img src="assets/loyalty_bnr_0fcb1d67ef.svg" alt="Loyalty Points" />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="service-text_container" id="loyalty-text">
+            <h3 class="mini-title text-uppercase">Loyalty Points</h3>
+            <p class="service-description">
+              Earn rewards with every interaction on Cloudy Web App! Our Loyalty
+              Points program lets you collect points for activities like
+              subscribing, referring friends, or engaging with our services.
+              Redeem points for exclusive perks, discounts, or premium access.
+            </p>
+            <a routerLink="/offer" class="design-link mb-4">
+              <div class="design-link-container">
+                <div class="mask">
+                  <span class="link-design design_link1">Learn More</span>
+                  <span class="link-design design_link2">Learn More</span>
+                </div>
+              </div>
+              <mat-icon class="arrow-icon">arrow_forward</mat-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

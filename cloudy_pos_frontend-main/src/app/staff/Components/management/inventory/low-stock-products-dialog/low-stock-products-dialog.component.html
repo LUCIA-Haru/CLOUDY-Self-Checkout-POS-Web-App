@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Low Stock Products</h2>
+<mat-dialog-content>
+  <table class="low-stock-table">
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of data.lowStockProducts">
+        <td>{{ product.productId }}</td>
+        <td>{{ product.productName }}</td>
+      </tr>
+      <tr *ngIf="data.lowStockProducts.length === 0">
+        <td colspan="2">No low stock products</td>
+      </tr>
+    </tbody>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

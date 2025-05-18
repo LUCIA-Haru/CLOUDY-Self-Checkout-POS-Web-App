@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <div class="container-fluid">
+    <h2 class="title">Product Management</h2>
+    <mat-tab-group
+      class="tab-group mt-5"
+      mat-stretch-tabs="false"
+      mat-align-tabs="start"
+    >
+      <mat-tab label="🏬 Products">
+        <app-product-management></app-product-management>
+      </mat-tab>
+      <mat-tab label="💹 Discounts">
+        <app-product-discount-report></app-product-discount-report>
+      </mat-tab>
+      <mat-tab label="⌚ Expiry">
+        <app-expiry-product-report></app-expiry-product-report>
+      </mat-tab>
+      <mat-tab label="⚠️ Low Stock">
+        <app-low-stock-report></app-low-stock-report>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

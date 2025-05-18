@@ -1,0 +1,115 @@
+<mat-dialog-content>
+  <form [formGroup]="regForm" class="regForm" (ngSubmit)="onRegister()">
+    <mat-card>
+      <mat-card-header class="d-flex align-items-center justify-center">
+        <h2>{{ title }}</h2>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="Enter username"
+            required
+          />
+          <mat-error *ngIf="username?.invalid && username?.touched">
+            <span *ngIf="username?.errors?.['required']"
+              >Username is required</span
+            >
+            <span *ngIf="username?.errors?.['pattern']">
+              Username must start with an uppercase letter and be at least 3
+              characters long.
+            </span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Enter email"
+            required
+            type="email"
+          />
+          <mat-error *ngIf="email?.invalid && email?.touched">
+            <span *ngIf="email?.errors?.['required']">Email is required</span>
+            <span *ngIf="email?.errors?.['email']">Enter a valid email</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            required
+            placeholder="Enter your password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hide = !hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="password?.invalid && password?.touched">
+            <span *ngIf="password?.errors?.['required']"
+              >Password is required</span
+            >
+            <span *ngIf="password?.errors?.['pattern']">
+              Password must contain at least one letter, one number, and one
+              special character.
+            </span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            [type]="hideConfirm ? 'password' : 'text'"
+            formControlName="confirmPassword"
+            required
+            placeholder="Confirm your password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hideConfirm = !hideConfirm"
+          >
+            <mat-icon>{{
+              hideConfirm ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="confirmPassword?.invalid && confirmPassword?.touched"
+          >
+            <span *ngIf="confirmPassword?.errors?.['required']"
+              >Confirm Password is required</span
+            >
+            <span *ngIf="regForm.get('confirmPassword')?.hasError('mismatch')">
+              Passwords do not match
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions class="d-flex align-self-center">
+        <button mat-raised-button class="confirm-btn me-3" type="submit">
+          Register
+        </button>
+        <button mat-button class="reset-button" type="reset">Reset</button>
+      </mat-card-actions>
+      <div class="d-flex justify-content-end align-self-center">
+        <a title="login" class="m-1 login" (click)="openLoginModel()">
+          Already had an account yet?
+        </a>
+      </div>
+    </mat-card>
+  </form>
+</mat-dialog-content>

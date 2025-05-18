@@ -1,0 +1,96 @@
+<h2 mat-dialog-title class="title">{{ dialogTitle }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="edit-form form">
+    <div
+      *ngFor="let col of data.columns | filterEditable: excludedFields"
+      class="form-field"
+    >
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>{{ col.label }}</mat-label>
+        <ng-container [ngSwitch]="col.type">
+          <!-- Text Input -->
+          <input
+            *ngSwitchCase="'text'"
+            matInput
+            [formControlName]="col.key"
+            [required]="col.required ?? false"
+          />
+
+          <!-- Number Input -->
+          <input
+            *ngSwitchCase="'number'"
+            matInput
+            type="number"
+            [formControlName]="col.key"
+            [required]="col.required ?? false"
+          />
+
+          <!-- Select Input -->
+          <mat-select
+            *ngSwitchCase="'select'"
+            [formControlName]="col.key"
+            [required]="col.required ?? false"
+          >
+            <mat-option
+              *ngFor="let option of col.options"
+              [value]="option.value"
+            >
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+
+          <!-- Date Input -->
+          <input
+            *ngSwitchCase="'date'"
+            matInput
+            [matDatepicker]="picker"
+            [formControlName]="col.key"
+            [required]="col.required ?? false"
+          />
+          <mat-datepicker-toggle
+            *ngSwitchCase="'date'"
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+          <!-- Default to Text Input -->
+          <input
+            *ngSwitchDefault
+            matInput
+            [formControlName]="col.key"
+            [required]="col.required ?? false"
+          />
+        </ng-container>
+        <mat-error *ngIf="form.get(col.key)?.hasError('required')">
+          {{ col.label }} is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+            form.get(col.key)?.hasError('minlength') && col.key === 'username'
+          "
+        >
+          Username must be at least 3 characters long
+        </mat-error>
+        <mat-error
+          *ngIf="
+            form.get(col.key)?.hasError('minlength') && col.key === 'password'
+          "
+        >
+          Password must be at least 6 characters long
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button class="cancel" (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    class="save-btn"
+    (click)="onSave()"
+    [disabled]="!form.valid"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

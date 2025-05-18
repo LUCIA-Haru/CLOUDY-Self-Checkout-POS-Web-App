@@ -1,0 +1,169 @@
+<form [formGroup]="checkOutFormGroup" class="checkout-form">
+  <div class="checkout-container">
+    <!-- Cart Items (Read-Only) -->
+    <div class="cart-items-readonly">
+      <h3>Your Items</h3>
+      <div class="cart-item" *ngFor="let item of dataSource" #cartItem>
+        <div class="item-details">
+          <img
+            [src]="item.prodImgURL || 'https://via.placeholder.com/60'"
+            [alt]="item.productName"
+            class="item-image"
+          />
+          <div class="item-info">
+            <span class="item-name fw-bolder">{{ item.productName }}</span>
+            <br />
+            <span class="item-subtext fw-light"
+              >Barcode: {{ item.barcode }}</span
+            >
+          </div>
+        </div>
+        <div class="item-price">
+          <span
+            class="price-text"
+            [ngClass]="{ strikethrough: item.hasDiscount }"
+          >
+            {{ item.price | currency: "USD" }}
+          </span>
+          <span class="discounted-price" *ngIf="item.hasDiscount">
+            {{ item.discountedPrice | currency: "USD" }}
+          </span>
+        </div>
+        <div class="item-quantity">
+          <span>{{ item.cartQuantity }}</span>
+        </div>
+        <div class="item-total">
+          {{ item.discountedPrice * item.cartQuantity | currency: "USD" }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Details -->
+    <div class="checkout-details">
+      <!-- Payment Options -->
+      <div class="payment-section">
+        <h3>Payment Info</h3>
+        <p>We accept only PayPal for now:</p>
+        <div class="payment-methods">
+          <img src="assets/paypal.png" alt="PayPal" class="payment-icon" />
+        </div>
+      </div>
+
+      <!-- Coupon Section -->
+      <div class="coupon-section">
+        <h3>Add Promo Code</h3>
+        <div class="coupon-input">
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              formControlName="couponCode"
+              placeholder="Enter promo code"
+            />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            class="ms-3"
+            [disabled]="!checkOutFormGroup.get('couponCode')?.value"
+            (click)="applyCoupon()"
+          >
+            Apply
+          </button>
+        </div>
+        <p *ngIf="couponDiscount > 0" class="discount-applied">
+          Coupon applied! Discount: {{ couponDiscount | currency: "USD" }}
+        </p>
+      </div>
+
+      <!-- Loyalty Points Section -->
+      <div class="loyalty-section">
+        <h3>Use Loyalty Points</h3>
+        <p>Available Points: {{ userLoyaltyPoints }}</p>
+        <div class="loyalty-input">
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              type="number"
+              formControlName="loyaltyPoints"
+              placeholder="Enter points to use"
+            />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            class="ms-3"
+            [disabled]="
+              !checkOutFormGroup.get('loyaltyPoints')?.value ||
+              checkOutFormGroup.get('loyaltyPoints')?.value > userLoyaltyPoints
+            "
+            (click)="applyLoyaltyPoints()"
+          >
+            Apply
+          </button>
+        </div>
+        <p *ngIf="loyaltyDiscount > 0" class="discount-applied">
+          Loyalty points applied! Discount:
+          {{ loyaltyDiscount | currency: "USD" }}
+        </p>
+      </div>
+
+      <!-- Summary -->
+      <div class="summary-section">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span class="summary-label">Original Total</span>
+          <span class="summary-value strikethrough">{{
+            originalTotal | currency: "USD"
+          }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Subtotal (after cart discounts)</span>
+          <span
+            class="summary-value"
+            [ngClass]="{
+              strikethrough: couponDiscount > 0 || loyaltyDiscount > 0,
+            }"
+          >
+            {{ cartTotal | currency: "USD" }}
+          </span>
+        </div>
+        <div class="summary-row" *ngIf="couponDiscount > 0">
+          <span class="summary-label">Coupon Discount</span>
+          <span class="summary-value"
+            >-{{ couponDiscount | currency: "USD" }}</span
+          >
+        </div>
+        <div class="summary-row" *ngIf="loyaltyDiscount > 0">
+          <span class="summary-label">Loyalty Points Discount</span>
+          <span class="summary-value"
+            >-{{ loyaltyDiscount | currency: "USD" }}</span
+          >
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Tax</span>
+          <span class="summary-value">{{ taxAmount | currency: "USD" }}</span>
+        </div>
+        <div class="summary-row grand-total">
+          <span class="summary-label">Grand Total</span>
+          <span class="summary-value">{{ grandTotal | currency: "USD" }}</span>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="action-buttons">
+        <button mat-raised-button class="back-btn" (click)="backToCart.emit()">
+          Back to Cart
+        </button>
+        <button
+          mat-raised-button
+          class="confirm-order-btn"
+          #confirmOrderBtn
+          (click)="initiatePurchase()"
+          [disabled]="
+            grandTotal <= 0 || dataSource.length === 0 || isPaymentInitiated
+          "
+        >
+          Confirm Order
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

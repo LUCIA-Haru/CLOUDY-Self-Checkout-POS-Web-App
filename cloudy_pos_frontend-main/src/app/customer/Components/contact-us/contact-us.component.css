@@ -1,0 +1,132 @@
+.contact-section {
+  background: linear-gradient(135deg, #f5e8b7 0%, #a9efff 50%, #d4e6f1 100%);
+  padding: 3rem 1rem;
+  min-height: 100vh;
+}
+.c_container img {
+  width: clamp(30%, 100%, 120vh);
+  margin: auto;
+}
+
+form {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  padding: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+label {
+  position: absolute;
+  top: -0.75rem;
+  left: 1.25rem;
+  z-index: 10;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  background: transparent;
+}
+
+input,
+textarea {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--second-gray);
+  border-radius: 2rem;
+  padding: 1.5rem;
+  font-size: 1rem;
+  background: none;
+  outline: none;
+  z-index: 1;
+  transition: border-color 0.3s ease;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+  border-radius: 1.5rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #a1a1a1;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  color: #1e3a8a;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+button:hover {
+  color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+.contact-message {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.color-blue {
+  color: #3b82f6;
+}
+
+.color-red {
+  color: #db4747;
+}
+
+@media (max-width: 576px) {
+  .contact-section {
+    padding: 2rem 1rem;
+  }
+
+  form {
+    padding: 0.5rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  input,
+  textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  textarea {
+    height: 80px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .contact-message {
+    font-size: 0.9rem;
+  }
+}

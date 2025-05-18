@@ -1,0 +1,77 @@
+<div class="banner-container container-fluid">
+  <div class="offer-banner_container">
+    <div class="smooth-scroller">
+      <div class="hero-scroller">
+        <div class="offer-section">
+          <div class="offer-section-wrapper">
+            <div class="offer-content">
+              <h1 class="hero-header h-1 text-uppercase">Experience</h1>
+              <h1 class="hero-header h-2 text-uppercase">modern</h1>
+              <h1 class="hero-header h-3 text-uppercase">shopping</h1>
+            </div>
+            <div class="pin-wrapper">
+              <div class="offer-img-wrapper heroImage" #heroImage>
+                <img
+                  #offerHeroImg
+                  src="assets/6a143f559a0cc068b7f51dbd25df84df.png"
+                  alt="offer"
+                  class="offer-hero-img"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Banner section start -->
+    <section class="banner-section d-flex align-items-center position-relative">
+      <!-- Bubble animation start -->
+      <div class="bubble-animation">
+        <div class="bubble-animation-item"></div>
+        <div class="bubble-animation-item"></div>
+        <div class="bubble-animation-item"></div>
+        <div class="bubble-animation-item"></div>
+        <div class="bubble-animation-item"></div>
+        <div class="bubble-animation-item"></div>
+        <div class="bubble-animation-item"></div>
+        <div class="bubble-animation-item"></div>
+        <div class="bubble-animation-item"></div>
+      </div>
+      <!-- Bubble animation end -->
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="banner-text">
+              <h2 class="mb-3">Discover seamless shopping with ease</h2>
+              <h1 class="mb-3 text-capitalize type">
+                Your Modern Shopping
+                <br />Platform
+              </h1>
+              <p class="mb-4">
+                Explore a world of convenience with our self-checkout and scan
+                features, designed to make your shopping experience effortless.
+                Offers a modern shopping experience with E-Commerce.
+              </p>
+              <div class="banner-buttons">
+                <button class="btn btn-scan" (click)="onScanClick()">
+                  Scan & Shop
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 order-first order-md-last mb-5 mb-md-0">
+            <div class="banner-img">
+              <div class="circular-img">
+                <div class="circular-img-inner">
+                  <div class="circular-img-circle"></div>
+                  <img [src]="bannerImg" alt="banner img" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Banner section end -->
+  </div>
+</div>

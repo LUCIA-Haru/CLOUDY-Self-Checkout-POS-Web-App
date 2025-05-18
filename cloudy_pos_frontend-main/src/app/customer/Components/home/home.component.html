@@ -1,0 +1,72 @@
+<app-pre-loader></app-pre-loader>
+<app-banner></app-banner>
+<section class="mobile_scan_ads_wrapper container_fluid">
+  <div class="mobile_container">
+    <div class="decoration-circles d-none d-lg-block">
+      <div class="decoration-circles-item"></div>
+      <div class="decoration-circles-item"></div>
+      <div class="decoration-circles-item"></div>
+      <div class="decoration-circles-item"></div>
+    </div>
+    <div class="decoration-imgs d-none d-lg-block">
+      <img
+        src="assets/shopping-cart-outline-svgrepo-com.svg"
+        alt="decoration-img"
+        class="decoration-imgs-item"
+      />
+      <img
+        src="assets/d37e5e17957f6b6370d220f0ef7b41c8.png"
+        alt="decoration-img"
+        class="decoration-imgs-item"
+      />
+
+      <img
+        src="assets/36c55f367b877198a999540e04d270fa.png"
+        alt="decoration-img"
+        class="decoration-imgs-item"
+      />
+      <img
+        src="assets/discount-coupon_5629119.png"
+        alt="decoration-img"
+        class="decoration-imgs-item"
+      />
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="img-card-holder" id="img-card-holder">
+          <img
+            src="assets/—Pngtree—take the phone scan code_4707453 (1).png"
+            alt="mobile scan"
+          />
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="content_holder" id="content_holder">
+          <p>Cloudy Web App empowers you to:</p>
+          <ul>
+            <li>🛒 Scan products instantly with your mobile camera</li>
+            <li>⚡ Enjoy faster, self-checkout</li>
+            <li>🔒 Experience secure, cloud-based payment integration</li>
+            <li>
+              📦 Keep track of your purchases with smart history & receipts
+            </li>
+            <li>💡 Save time, reduce effort, and shop stress-free</li>
+            <a routerLink="/guide" class="design-link mb-4">
+              <div class="design-link-container">
+                <div class="mask">
+                  <span class="link-design design_link1">Guide</span>
+                  <span class="link-design design_link2">Guide</span>
+                </div>
+              </div>
+              <mat-icon class="arrow-icon">arrow_forward</mat-icon>
+            </a>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-discount-products></app-discount-products>
+<app-static-parts></app-static-parts>
+<app-category-carousel></app-category-carousel>
+<router-outlet></router-outlet>

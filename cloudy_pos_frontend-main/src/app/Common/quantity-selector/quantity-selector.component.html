@@ -1,0 +1,14 @@
+<div class="counter-container quantity-selector">
+  <button
+    (click)="decrement()"
+    class="countre-btn"
+    title="Decrease quantity"
+    [disabled]="count === 0"
+  >
+    -
+  </button>
+  <span class="counter-value">{{ count }}</span>
+  <button (click)="increment()" class="countre-btn" title="Increase quantity">
+    +
+  </button>
+</div>

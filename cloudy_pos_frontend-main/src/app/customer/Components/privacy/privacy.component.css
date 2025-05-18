@@ -1,0 +1,8 @@
+.privacy-policy {
+  padding: 3rem;
+  text-wrap: wrap;
+}
+
+.privacy-policy ul {
+  list-style: square;
+}

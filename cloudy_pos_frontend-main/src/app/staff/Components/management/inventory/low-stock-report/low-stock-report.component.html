@@ -1,0 +1,13 @@
+<div class="table-container">
+  <app-table
+    [columns]="columns"
+    [data]="stockLevels"
+    [filterConfig]="filterConfig"
+    [editable]="false"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    [entityName]="'Stock Level by Category'"
+    (pageChange)="onPageChange($event)"
+    (filterChange)="onFilterChange($event)"
+  ></app-table>
+</div>

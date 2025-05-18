@@ -1,0 +1,350 @@
+/* Keyframes for bubble animation */
+@keyframes bubble {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+.offer-banner_container {
+  position: relative;
+  overflow: hidden;
+  margin-top: 9rem;
+}
+.smooth-scroller,
+.hero-scroller,
+.offer-section,
+.offer-section-wrapper {
+  width: 100%;
+  height: 120vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.offer-content {
+  position: absolute;
+  text-align: center;
+  z-index: 1;
+}
+.hero-header {
+  font-size: 4rem;
+  color: var(--dark);
+  margin: 0;
+  line-height: 1.2;
+  font-family: var(--title-font);
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.048);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.pin-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.offer-img-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.offer-hero-img {
+  width: 100%;
+  height: 100vh;
+  object-fit: contain;
+  transform: scale(1.2);
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+/* Banner Section */
+.banner-section {
+  padding: 100px 0;
+  min-height: 3em;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Banner Text */
+.banner-text h2 {
+  font-size: 1.5rem;
+  color: var(--gray-400);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Banner Text */
+.banner-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--dark);
+  font-family: var(--title-font);
+  line-height: 1.2;
+  display: block; /* Allow natural text wrapping */
+  min-height: 7.2rem; /* Reserve space for two lines */
+  overflow: visible; /* Prevent clipping */
+  width: 100%; /* Ensure text wraps within container */
+}
+
+/* Text Wrapper for Each Line */
+.text-wrapper {
+  display: inline; /* Inline to allow text to flow naturally */
+  white-space: nowrap; /* Prevent intra-line wrapping */
+}
+
+/* Cursor Styling */
+.cursor {
+  display: inline;
+  font-weight: normal;
+  color: var(--dark);
+}
+.banner-text p {
+  font-size: 1.1rem;
+  color: var(--gray-400);
+  max-width: 500px;
+}
+
+/* Buttons */
+.banner-buttons {
+  display: flex;
+  gap: 1rem;
+}
+.btn-scan {
+  text-transform: uppercase;
+  color: var(--dark);
+  background: var(--sky-hover);
+  border: none;
+  border-radius: 2rem;
+  box-shadow: 0 4px 20px hsla(207, 24%, 35%, 0.1);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  top: 0.4rem;
+}
+
+.btn-scan::before {
+  content: "";
+  border-radius: 2rem;
+  min-width: calc(200px + 6px);
+  min-height: calc(50px + 6px);
+  border: 2px solid var(--sky-hover);
+  box-shadow: 0 4px 20px hsla(207, 24%, 35%, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.btn-scan:hover,
+.btn-scan:focus {
+  background: var(--sky-hover);
+  transform: translateY(-6px);
+}
+
+.btn-scan:hover::before,
+.btn-scan:focus::before {
+  opacity: 1;
+}
+
+.btn-scan::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 6px solid var(--sky-hover);
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+.btn-scan:hover::after,
+.btn-scan:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+/* Circular Image */
+.circular-img {
+  max-width: 400px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.circular-img-inner {
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.circular-img-circle {
+  height: 400px;
+  width: 400px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: var(--circle-bg);
+  z-index: 0;
+}
+
+.circular-img img {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Bubble Animation */
+.bubble-animation-item {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.bubble-animation-item:nth-child(1) {
+  border-color: var(--bubble-color-1);
+  top: 100%;
+  left: 15%;
+  animation: bubble 25s linear infinite;
+}
+
+.bubble-animation-item:nth-child(2) {
+  border-color: var(--bubble-color-2);
+  top: 70%;
+  left: 55%;
+  animation: bubble 35s linear infinite;
+}
+
+.bubble-animation-item:nth-child(3) {
+  border-color: var(--bubble-color-1);
+  top: 85%;
+  left: 85%;
+  animation: bubble 45s linear infinite;
+}
+
+.bubble-animation-item:nth-child(4) {
+  border-color: var(--bubble-color-3);
+  top: 75%;
+  left: 65%;
+  animation: bubble 55s linear infinite;
+}
+
+.bubble-animation-item:nth-child(5) {
+  border-color: var(--bubble-color-2);
+  top: 40%;
+  left: 20%;
+  animation: bubble 65s linear infinite;
+}
+
+.bubble-animation-item:nth-child(6) {
+  border-color: var(--bubble-color-3);
+  top: 30%;
+  left: 40%;
+  animation: bubble 75s linear infinite;
+}
+
+.bubble-animation-item:nth-child(7) {
+  border-color: var(--bubble-color-1);
+  top: 95%;
+  left: 10%;
+  animation: bubble 50s linear infinite;
+}
+
+.bubble-animation-item:nth-child(8) {
+  border-color: var(--bubble-color-4);
+  top: 105%;
+  left: 35%;
+  animation: bubble 60s linear infinite;
+}
+
+.bubble-animation-item:nth-child(9) {
+  border-color: var(--bubble-color-2);
+  top: 110%;
+  left: 70%;
+  animation: bubble 70s linear infinite;
+}
+/* Mobile: 1 item */
+@media (max-width: 768px) {
+  .offer-banner_container {
+    margin: 0;
+  }
+  .banner-text h1 {
+    font-size: 2rem;
+    min-height: 4.8rem; /* Adjust for two lines at smaller font size */
+  }
+
+  .banner-text p {
+    font-size: 1rem;
+  }
+  .offer-hero-img {
+    width: 150%; /* Ensure it takes full width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: fill; /* Ensures the image covers the container properly */
+    min-height: 500px; /* Set a minimum height to make it bigger */
+  }
+  .banner-text h1 {
+    font-size: 2rem;
+    min-height: 4.8rem; /* Adjust for two lines at smaller font size */
+  }
+
+  .banner-text p {
+    font-size: 1rem;
+  }
+
+  .btn-scan {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .circular-img {
+    max-width: 300px;
+  }
+
+  .circular-img-circle {
+    height: 300px;
+    width: 300px;
+  }
+  .hero-header {
+    font-size: 1.8rem;
+  }
+}

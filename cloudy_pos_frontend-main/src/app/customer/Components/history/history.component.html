@@ -1,0 +1,54 @@
+<div class="container">
+  <h1 #heroTitle class="title text-center title-top">Purchase History</h1>
+  <div class="grid">
+    <div
+      #historyCard
+      *ngFor="let purchase of purchases; let i = index"
+      class="history-card"
+    >
+      <div class="card-header">
+        <h2>Purchase #{{ purchase.purchaseId }}</h2>
+        <span [ngClass]="getStatusColor(purchase.status)">
+          {{ purchase.status }}
+        </span>
+      </div>
+      <div #purchaseDetails class="purchase-details">
+        <p><strong>Date:</strong> {{ purchase.createdOn | date: "medium" }}</p>
+        <p>
+          <strong>Original Amount:</strong> ${{
+            purchase.originalAmount.toFixed(2)
+          }}
+        </p>
+        <p>
+          <strong>Discount:</strong> ${{ purchase.discountAmount.toFixed(2) }}
+        </p>
+        <p><strong>Tax:</strong> ${{ purchase.taxAmount.toFixed(2) }}</p>
+        <p>
+          <strong>Final Amount:</strong> ${{ purchase.finalAmount.toFixed(2) }}
+        </p>
+        <p>
+          <strong>Payment Method:</strong>
+          {{ purchase.transaction?.paymentMethod || "N/A" }}
+        </p>
+        <div>
+          <strong>Items:</strong>
+          <ul class="item-list">
+            <li *ngFor="let item of purchase.items">
+              Quantity: {{ item.quantity }} - ${{ item.subTotal.toFixed(2) }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button
+        #voucherButton
+        (click)="downloadVoucher(purchase.voucherPdfUrl)"
+        [disabled]="!purchase.voucherPdfUrl"
+        class="voucher-button"
+      >
+        {{
+          purchase.voucherPdfUrl ? "Download Voucher" : "No Voucher Available"
+        }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="sidebar-wrapper">
+  <div class="nav-tabs" [style.--tab-count]="tabCount">
+    <div class="tab-list" [ngClass]="{ 'center-tabs': tabCount <= 3 }">
+      <!-- Loop through each tab -->
+      <div
+        *ngFor="let tab of tabs; let i = index"
+        class="tab-label"
+        [class.active]="activeIndex === i && activeChildIndex === null"
+        (click)="tab.name === 'Logout' ? logout() : setActive(i)"
+      >
+        <mat-icon>{{ tab.icon }}</mat-icon>
+        <span class="menu-text">{{ tab.name.toUpperCase() }}</span>
+        <mat-icon
+          *ngIf="tab.children"
+          class="expand-icon"
+          [class.expanded]="tab.expanded"
+          (click)="toggleExpand(i); $event.stopPropagation()"
+        >
+          {{ tab.expanded ? "keyboard_arrow_up" : "keyboard_arrow_down" }}
+        </mat-icon>
+
+        <!-- Display children when expanded -->
+        <div *ngIf="tab.children && tab.expanded" class="children-container">
+          <div
+            *ngFor="let child of tab.children; let j = index"
+            class="child-tab"
+            [class.active]="activeIndex === i && activeChildIndex === j"
+            (click)="setActive(i, j)"
+          >
+            <mat-icon>{{ child.icon }}</mat-icon>
+            <span class="menu-text">{{ child.name.toUpperCase() }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active tab marker -->
+    <div
+      class="marker"
+      [style.--active-index]="activeIndex"
+      [style.--active-child-index]="
+        activeChildIndex !== null ? activeChildIndex : -1
+      "
+    >
+      <div id="top"></div>
+      <div id="bottom"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,178 @@
+<!-- Desktop Header -->
+<header class="header-glass" *ngIf="!isMobile" #desktopHeader>
+  <nav class="nav-container">
+    <div class="logo-container">
+      <a href="/" routerLink="/">
+        <img [src]="logoPath" alt="logo" class="img-fluid logo" />
+      </a>
+    </div>
+    <div class="tab-nav">
+      <a routerLink="/products" class="tab-link" routerLinkActive="active"
+        >Products</a
+      >
+      <a routerLink="/offers" class="tab-link" routerLinkActive="active"
+        >Offers</a
+      >
+      <a routerLink="/about" class="tab-link" routerLinkActive="active"
+        >About</a
+      >
+      <a routerLink="/cart" class="tab-link" routerLinkActive="active">
+        <mat-icon>shopping_cart</mat-icon> Cart
+      </a>
+    </div>
+    <div class="avatarContainer">
+      <!-- Show Login button if user is not logged in -->
+      <button
+        mat-button
+        class="login-button"
+        *ngIf="!user"
+        (click)="openLoginModel()"
+      >
+        Login
+      </button>
+      <!-- Show user menu if user is logged in -->
+      <div *ngIf="user">
+        <button mat-button [matMenuTriggerFor]="menu">
+          <span class="user-name">{{ user?.username || "Guest" }}</span>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/profile">Profile</button>
+          <button mat-menu-item routerLink="/loyaltypoints">
+            Loyalty Points
+          </button>
+          <button mat-menu-item routerLink="/coupon">Coupons</button>
+          <button mat-menu-item routerLink="/history">History</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile Header -->
+<header class="mobile-header" *ngIf="isMobile">
+  <nav class="nav d-flex justify-content-between">
+    <a href="/" routerLink="/">
+      <img [src]="logoPath" alt="logo" class="img-fluid logo" />
+    </a>
+    <!-- Scan Button -->
+    <div class="nav-item scan-button" (click)="navigateTo('/scan')">
+      <mat-icon>qr_code_scanner</mat-icon>
+    </div>
+    <!-- Show Login button if user is not logged in -->
+    <button
+      mat-button
+      class="login-icon-button"
+      *ngIf="!user"
+      (click)="openLoginModel()"
+    >
+      <mat-icon>person</mat-icon>
+    </button>
+    <div class="nav__buttons">
+      <!-- Show Toggle Button if user is logged in -->
+      <div class="nav__toggle" id="nav-toggle" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Slide-up Menu -->
+  <div class="nav__menu" id="nav-menu" [ngClass]="{ 'show-menu': isMenuOpen }">
+    <div class="nav__header">
+      <!-- Show Login button in place of user-info if user is not logged in -->
+      <div class="user-info2" *ngIf="!user">
+        <button
+          mat-raised-button
+          class="login-button"
+          (click)="openLoginModel()"
+        >
+          Login
+        </button>
+      </div>
+      <!-- Show user-info if user is logged in -->
+      <div class="user-info" *ngIf="user">
+        <span class="user-name">{{ user?.username || "Guest" }}</span>
+      </div>
+      <div class="nav__close" id="nav-close" (click)="toggleMenu()">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+    <!-- Grid Layout for Main Navigation Links -->
+    <div class="nav__grid">
+      <!-- Menu for non-logged-in users -->
+      <ng-container *ngIf="!user">
+        <a routerLink="/products" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>store</mat-icon>
+          <span>Products</span>
+        </a>
+        <a routerLink="/offers" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>local_offer</mat-icon>
+          <span>Offers</span>
+        </a>
+        <a routerLink="/about" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>info</mat-icon>
+          <span>About</span>
+        </a>
+        <a routerLink="/cart" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>shopping_cart</mat-icon>
+          <span>Cart</span>
+        </a>
+      </ng-container>
+      <!-- Menu for logged-in users -->
+      <ng-container *ngIf="user">
+        <a routerLink="/products" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>store</mat-icon>
+          <span>Products</span>
+        </a>
+        <a routerLink="/offers" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>local_offer</mat-icon>
+          <span>Offers</span>
+        </a>
+        <a routerLink="/about" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>info</mat-icon>
+          <span>About</span>
+        </a>
+        <a routerLink="/cart" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>shopping_cart</mat-icon>
+          <span>Cart</span>
+        </a>
+        <a routerLink="/profile" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </a>
+        <a
+          routerLink="/loyaltypoints"
+          class="nav__grid-item"
+          (click)="toggleMenu()"
+        >
+          <mat-icon>loyalty</mat-icon>
+          <span>Loyalty Points</span>
+        </a>
+        <a routerLink="/coupon" class="nav__grid-item" (click)="toggleMenu()">
+          <mat-icon>confirmation_number</mat-icon>
+          <span>Coupons</span>
+        </a>
+        <a
+          routerLink="/history"
+          class="nav__grid-item mb-3"
+          (click)="toggleMenu()"
+        >
+          <mat-icon>history</mat-icon>
+          <span>History</span>
+        </a>
+      </ng-container>
+    </div>
+    <!-- Show Logout button only if user is logged in -->
+    <button class="logout-button" mat-button *ngIf="user" (click)="logout()">
+      Logout
+    </button>
+  </div>
+
+  <!-- Backdrop -->
+  <div
+    class="nav__backdrop"
+    [ngClass]="{ 'show-backdrop': isMenuOpen }"
+    (click)="toggleMenu()"
+  ></div>
+</header>

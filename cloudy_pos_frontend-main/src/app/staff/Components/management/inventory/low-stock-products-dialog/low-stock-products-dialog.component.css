@@ -1,0 +1,15 @@
+.low-stock-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.low-stock-table th,
+.low-stock-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.low-stock-table th {
+  background-color: #f4f4f4;
+}

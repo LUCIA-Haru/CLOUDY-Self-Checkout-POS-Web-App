@@ -1,0 +1,337 @@
+.self-checkout-container {
+  overflow-x: hidden; /* Keep to prevent horizontal overflow at root level */
+}
+
+.hero-section {
+  background: var(--background);
+  color: var(--dark);
+  text-align: center;
+  padding: 100px 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: var(--title-font);
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.features-section {
+  padding: 80px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.history-section {
+  padding: 80px 20px;
+  background: white;
+  text-align: center;
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: #007bff;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  margin-bottom: 40px;
+  position: relative;
+  width: 50%;
+  text-align: right;
+  padding-right: 40px;
+}
+
+.timeline-item:nth-child(even) {
+  margin-left: 50%;
+  text-align: left;
+  padding-right: 0;
+  padding-left: 40px;
+}
+
+.timeline-content {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.timeline-content p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.timeline-item:before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item:nth-child(even):before {
+  right: auto;
+  left: -10px;
+}
+
+.store-locator-section {
+  padding: 80px 20px;
+  background: #f9f9f9;
+  text-align: center;
+  overflow: hidden; /* Prevent content overflow */
+  position: relative; /* Ensure section context */
+  z-index: 1; /* Keep section above map */
+}
+
+.map-container {
+  height: 400px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensure map content is contained */
+  position: relative; /* Ensure proper positioning context */
+  z-index: 0; /* Set a lower z-index to keep it below other sections */
+}
+
+#map,
+.leaflet-container,
+.leaflet-tile-container {
+  width: 100%;
+  height: 100%;
+  overflow: visible; /* Unified overflow to prevent internal scrollbars */
+}
+
+.branches-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative; /* Ensure proper stacking context */
+  z-index: 2; /* Keep above map if needed */
+}
+
+.branch-card {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.branch-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.branch-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.cta-section {
+  padding: 80px 20px;
+  background: var(--beige-blue);
+  color: var(--dark);
+  text-align: center;
+}
+
+.cta-section .section-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 60px 20px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .features-section {
+    padding: 60px 20px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .history-section {
+    padding: 60px 20px;
+  }
+
+  .timeline:before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    text-align: left;
+    padding-left: 40px;
+    padding-right: 20px;
+    margin-left: 0;
+  }
+
+  .timeline-item:nth-child(even) {
+    margin-left: 0;
+    padding-left: 40px;
+  }
+
+  .timeline-item:before {
+    left: 10px;
+    right: auto;
+  }
+
+  .store-locator-section {
+    padding: 60px 20px;
+  }
+
+  .map-container {
+    height: 300px;
+    width: 100%;
+  }
+
+  .cta-section {
+    padding: 60px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 40px 15px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .features-section {
+    padding: 40px 15px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .map-container {
+    height: 250px;
+    width: 100%;
+  }
+
+  .history-section {
+    padding: 40px 15px;
+  }
+
+  .store-locator-section {
+    padding: 40px 15px;
+  }
+
+  .cta-section {
+    padding: 40px 15px;
+  }
+
+  .cta-section .section-title {
+    font-size: 1.8rem;
+  }
+
+  .cta-section .cta-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}

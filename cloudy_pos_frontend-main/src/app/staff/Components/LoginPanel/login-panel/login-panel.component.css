@@ -1,0 +1,130 @@
+.login-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-title {
+  font-weight: bolder;
+  color: var(--gray-900);
+  margin: 20px;
+  text-align: center;
+}
+.row {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.logo {
+  width: 200px;
+  position: relative;
+  right: 15%;
+  bottom: 5%;
+}
+
+.left_image_container,
+.right_container {
+  box-sizing: border-box;
+}
+.image_container {
+  width: 100%;
+  height: auto; /* Allow height to adjust based on content */
+}
+.image_container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.right_container {
+  background-color: #dfe6ed;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.staff_login_container {
+  position: relative;
+  left: 5%;
+  bottom: 7%;
+  background: rgba(255, 255, 255, 0.17);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.1px);
+  -webkit-backdrop-filter: blur(3.1px);
+  border: 1px solid rgba(255, 255, 255, 0.29);
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Login Card */
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+}
+
+.login-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/* Input Fields */
+.input-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input-field input {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.input-field.mat-focused .mat-form-field-outline {
+  color: #fff;
+}
+
+/* Buttons */
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.login-button {
+  background-color: var(--sky);
+  color: var(--gray-900);
+  font-weight: 500;
+  flex-grow: 1;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #68e1fd;
+}
+
+.reset-button {
+  background-color: transparent;
+  color: var(--gray-900);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  flex-grow: 1;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

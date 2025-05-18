@@ -1,0 +1,10 @@
+<div class="loyalty-wrapper">
+  <h2 class="title text-center title-top">Loyalty Points History</h2>
+  <app-table
+    [columns]="columns"
+    [data]="loyaltyPointsHistory"
+    [editable]="false"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+  ></app-table>
+</div>

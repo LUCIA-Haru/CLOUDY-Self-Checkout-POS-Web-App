@@ -1,0 +1,294 @@
+<div class="staff-profile-wrapper">
+  <div class="staff-profile-container container-fluid">
+    <h2 class="title">Profile</h2>
+    <div class="divider"></div>
+    <div class="row align-items-start">
+      <!-- Profile Picture Column (Left) -->
+      <div class="col-lg-4 col-md-12 mb-4 profile-card-wrapper">
+        <div class="profile-card glassmorphism" #profileCard>
+          <div class="card-body text-center">
+            <div class="img-container" *ngIf="staff.profilePhoto; else noImage">
+              <img [src]="staff.profilePhoto" alt="Staff Profile Picture" />
+            </div>
+            <ng-template #noImage>
+              <div class="img-placeholder">
+                <i class="fas fa-user-circle"></i>
+              </div>
+            </ng-template>
+            <div class="action-container">
+              <input
+                type="file"
+                (change)="uploadPic($event)"
+                accept="image/*"
+                style="display: none"
+                #fileInput
+              />
+              <button class="btn btn-upload" (click)="fileInput.click()">
+                Upload Photo
+              </button>
+              <button
+                class="btn btn-remove"
+                (click)="removePic(staff.profilePhoto)"
+                *ngIf="staff.profilePhoto"
+              >
+                Remove Photo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Details Column (Right) -->
+      <div class="col-lg-8 col-md-12 mb-4">
+        <div class="info-container glassmorphism" #infoContainer>
+          <div class="modern-display">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="info-group">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [value]="staff.firstName"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-group">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [value]="staff.lastName"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="info-group">
+              <label>Username</label>
+              <input
+                type="text"
+                class="form-control"
+                [value]="staff.username"
+                readonly
+              />
+            </div>
+            <div class="info-group">
+              <label>Email</label>
+              <input
+                type="email"
+                class="form-control"
+                [value]="staff.email"
+                readonly
+              />
+            </div>
+            <div class="info-group">
+              <label>Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                [value]="staff.phoneNo"
+                readonly
+              />
+            </div>
+            <div class="info-group">
+              <label>Address</label>
+              <textarea
+                class="form-control"
+                [value]="staff.address"
+                readonly
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="info-group">
+              <label>Date of Birth</label>
+              <input
+                type="date"
+                class="form-control"
+                [value]="staff.dob | date: 'yyyy-MM-dd'"
+                readonly
+              />
+            </div>
+            <div class="info-group">
+              <label>Role</label>
+              <input
+                type="text"
+                class="form-control"
+                [value]="staff.role"
+                readonly
+              />
+            </div>
+            <div class="info-group">
+              <label>Department</label>
+              <input
+                type="text"
+                class="form-control"
+                [value]="staff.department"
+                readonly
+              />
+            </div>
+            <div class="info-group">
+              <label>Position</label>
+              <input
+                type="text"
+                class="form-control"
+                [value]="staff.position"
+                readonly
+              />
+            </div>
+            <div class="info-group">
+              <label>Status</label>
+              <input
+                type="text"
+                class="form-control"
+                [value]="staff.status ? 'Active' : 'Inactive'"
+                readonly
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Change Password Section -->
+        <div class="col-12 mt-5 mb-5 px-4">
+          <div class="glassmorphism p-3 p-md-4" #changePasswordContainer>
+            <form
+              [formGroup]="changePasswordForm"
+              (ngSubmit)="onSubmit()"
+              id="pass-form"
+            >
+              <h5 class="mb-3 fw-bold">Change Password</h5>
+              <div class="row">
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label">Old Password</label>
+                  <div class="pass-container d-flex">
+                    <input
+                      [type]="showOldPassword ? 'text' : 'password'"
+                      formControlName="oldPassword"
+                      class="form-control"
+                      id="old_pass"
+                      required
+                    />
+                    <div class="show-pass_container">
+                      <span
+                        class="show-pass"
+                        (click)="togglePasswordVisibility('oldPassword')"
+                      >
+                        <mat-icon>{{
+                          showOldPassword ? "visibility" : "visibility_off"
+                        }}</mat-icon>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="oldPassword?.touched && oldPassword?.invalid"
+                    class="text-danger"
+                  >
+                    <small *ngIf="oldPassword?.hasError('required')">
+                      Old password is required.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label">New Password</label>
+                  <div class="pass-container d-flex">
+                    <input
+                      [type]="showNewPassword ? 'text' : 'password'"
+                      formControlName="newPassword"
+                      class="form-control"
+                      id="new_pass"
+                      required
+                    />
+                    <div class="show-pass_container">
+                      <span
+                        class="show-pass"
+                        (click)="togglePasswordVisibility('newPassword')"
+                      >
+                        <mat-icon>{{
+                          showNewPassword ? "visibility" : "visibility_off"
+                        }}</mat-icon>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="newPassword?.touched && newPassword?.invalid"
+                    class="text-danger"
+                  >
+                    <small *ngIf="newPassword?.hasError('required')">
+                      New password is required.
+                    </small>
+                    <small
+                      *ngIf="
+                        newPassword?.hasError('minlength') ||
+                        newPassword?.hasError('maxlength')
+                      "
+                    >
+                      Password must be between 6 and 20 characters.
+                    </small>
+                    <small *ngIf="newPassword?.hasError('pattern')">
+                      Password must contain at least one numeric digit, one
+                      uppercase, and one lowercase letter.
+                    </small>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <label class="form-label">Confirm Password</label>
+                  <div class="pass-container d-flex">
+                    <input
+                      [type]="showConfirmPassword ? 'text' : 'password'"
+                      formControlName="confirmPassword"
+                      class="form-control"
+                      id="confirm_pass"
+                      required
+                    />
+                    <div class="show-pass_container">
+                      <span
+                        class="show-pass"
+                        (click)="togglePasswordVisibility('confirmPassword')"
+                      >
+                        <mat-icon>{{
+                          showConfirmPassword ? "visibility" : "visibility_off"
+                        }}</mat-icon>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="confirmPassword?.touched && confirmPassword?.invalid"
+                    class="text-danger"
+                  >
+                    <small *ngIf="confirmPassword?.hasError('required')">
+                      Confirm password is required.
+                    </small>
+                  </div>
+                  <div
+                    *ngIf="
+                      changePasswordForm.hasError('mismatch') &&
+                      confirmPassword?.touched
+                    "
+                    class="text-danger"
+                  >
+                    <small>Passwords do not match.</small>
+                  </div>
+                </div>
+                <span class="p-note col-12">
+                  *Password must be between 6 to 20 characters and contain at
+                  least one numeric digit, one uppercase, and one lowercase
+                  letter.
+                </span>
+              </div>
+              <div class="col-12 p-3 text-end w-100">
+                <button
+                  type="submit"
+                  class="btn btn-color2"
+                  [disabled]="changePasswordForm.invalid"
+                >
+                  Change
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
