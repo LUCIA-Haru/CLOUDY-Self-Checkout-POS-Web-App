@@ -26,17 +26,17 @@
 - Customer Management (R)
 - Staff Management (CRUD)
 - Products, Suppliers, Discounts, etc. Management (CRUD)
-- Dashbaord with Reports Analysis
+- Dashboard with Reports Analysis
 - Real-Time Updates
 
 ### User Features
 
-- Otp Email Verication
+- Otp Email Verification 
 - JWT Token
 - Barcode Scanning with camera
-- Filter and Search Procuts
+- Filter and Search Products
 - Cart Management
-- Session & Cookie Managemnt 
+- Session & Cookie Management
 - Real-Time Data Update
 - View Reservation Records
 - Voucher Download
@@ -58,6 +58,8 @@
 - JWT Token
 - End Point Access Control
 - Role Based Access Control
+- self-Customize UI Dashboard
+- Draggable UI design
 
 
 ### Integrations
